@@ -6,3 +6,4 @@
 2. [Profiles](/chapters/02-profiles.md)
 3. Groups (*Coming Soon*)
 4. [Users](/chapters/04-users.md)
+5. [Registrations](/chapters/05-registrations.md)

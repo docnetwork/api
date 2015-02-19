@@ -66,7 +66,7 @@ Profiles can have any number of registrations to different groups within the sys
 
 - **A nurse, Sally**, is registered as a provider to Discovery Camps as a whole.  She is able to see every patient in the organization and interact with their medical records.  Nurse Sally has her own user record (in addition to her profile) that she uses to log in to access the system.  She is able to interact with the whole camp.
 
-- **Another nurse, John**, will only be working part of the summer.  He has two provider registrations, under "Session 2" and "Session 3".  John is only able to see patients registered under those two sessions, and he loses access to the provider part of the system once those sessions have ended.  John is Timmy's dad, and his user is associated with both the "John" profile (allowing provider access) and the "Timmy" profile (allowing patient/parent access).  He is able to interact with only "Session 2" and "Session 3" campers, and only while those sessions are taking place.
+- **Another nurse, John**, will only be working part of the summer.  He has two provider registrations, under "Session 2" and "Session 3".  John is only able to see patients registered under those two sessions.  John is Timmy's dad, and his user is associated with both the "John" profile (allowing provider access) and the "Timmy" profile (allowing patient/parent access).  He is able to interact with only "Session 2" and "Session 3" campers, and only while those sessions are taking place.
 
 ## Authorization
 

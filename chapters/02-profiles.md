@@ -11,6 +11,20 @@ A profile object contains the following fields:
 - `sex` Profile's sex, either ["Male", "Female"]
 - `phase`  **[READ-ONLY]** Describes if the profile is relevant in the ["past", "present", "future"]
 
+In routes that reference a specific profile, you'll find a `<profileID>` parameter, which refers to DocNetwork's `id` field on the profile.  You can replace `<profileID>` with your own `identifier`, if applicable.  The parameter *must* be prefixed with a dash (`-`) when using `identifier`.  Example:
+
+Using DocNetwork's `id` field:
+
+```
+/api/organizations/12345/profiles/67890
+```
+
+The same profile, using your own `identifier`, "participant123abc":
+
+```
+/api/organizations/12345/profiles/-participant123abc
+```
+
 ## Retrieve a Profile
 
 Route:

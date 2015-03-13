@@ -10,6 +10,7 @@ A profile object contains the following fields:
 - `dob` Profile's date of birth, ISO-8601 formatted (e.g. "2012-01-01")
 - `sex` Profile's sex, either ["Male", "Female"]
 - `phase`  **[READ-ONLY]** Describes if the profile is relevant in the ["past", "present", "future"]
+- `completeness` **[READ-ONLY]** The completeness of the profile's health form, from `0` - `100`
 
 In routes that reference a specific profile, you'll find a `<profileID>` parameter, which refers to DocNetwork's `id` field on the profile.  You can replace `<profileID>` with your own `identifier`, if applicable.  The parameter *must* be prefixed with a dash (`-`) when using `identifier`.  Example:
 

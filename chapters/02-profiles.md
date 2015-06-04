@@ -57,6 +57,47 @@ Response `200 OK`:
 }
 ```
 
+## Retrieve a Profile's Reviews
+
+Route:
+
+```
+GET /api/organizations/<orgID>/profiles/<profileID>/reviews
+```
+
+Request:
+
+```
+GET /organizations/21437/profiles/197715/reviews HTTP/1.1
+Host: app.campdoc.com
+Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
+```
+
+Response `200 OK`:
+
+```json
+{
+  "Medical": {
+    "status": "Yes",
+    "timestamp": "2014-07-15T13:55:33.941Z",
+    "sticky": false,
+    "provider": {
+      "name": "Jane Smith",
+      "email": "jane@campdoc.com"
+    }
+  },
+  "General": {
+    "status": "No",
+    "timestamp": "2014-06-12T13:19:08.738Z",
+    "sticky": true,
+    "provider": {
+      "name": "John Smith",
+      "email": "john@campdoc.com"
+    }
+  }
+}
+```
+
 ## Create a Profile
 
 Route:

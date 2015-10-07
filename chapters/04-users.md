@@ -89,7 +89,7 @@ POST /api/organizations/<orgID>/sso/<email>
 Request:
 
 ```
-POST /api/organizations/21437/profiles/197715/users/hoban@campdoc.com HTTP/1.1
+POST /api/organizations/21437/sso/hoban@campdoc.com HTTP/1.1
 Host: app.campdoc.com
 Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
 ```

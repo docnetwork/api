@@ -53,7 +53,8 @@ Response `200 OK`:
   "familyName": "Reynolds",
   "dob": "1986-09-20",
   "sex": "Male",
-  "phase": "present"
+  "phase": "present",
+  "completeness": 100
 }
 ```
 

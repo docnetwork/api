@@ -26,6 +26,14 @@ The same profile, using your own `identifier`, "participant123abc":
 /api/organizations/12345/profiles/-participant123abc
 ```
 
+## Retrieve all profiles in an organization
+
+Route:
+
+```
+GET /api/organizations/<orgID>/profiles
+```
+
 ## Retrieve a Profile
 
 Route:

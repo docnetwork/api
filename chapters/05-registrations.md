@@ -7,6 +7,16 @@ A registration object contains the following fields:
 - `profileID` **[REQUIRED]** The ID of the profile
 - `type` **[REQUIRED]** Whether the profile is registered as ["patient", "provider"]
 
+## Routes:
+
+```
+GET     /api/organizations/:orgID/profiles/:profileID/registrations
+POST    /api/organizations/:orgID/profiles/:profileID/registrations
+GET     /api/organizations/:orgID/profiles/:profileID/registrations/:registrationID
+PUT     /api/organizations/:orgID/profiles/:profileID/registrations/:registrationID
+DELETE  /api/organizations/:orgID/profiles/:profileID/registrations/:registrationID
+```
+
 ## Review a Profile's Registrations
 
 Route:
@@ -42,33 +52,6 @@ Response `200 OK`:
 ]
 ```
 
-## Review a Specific Registration
-
-Route:
-
-```
-GET /api/organizations/<orgID>/profiles/<profileID>/registrations/<registrationID>
-```
-
-Request:
-
-```
-GET /api/organizations/21437/profiles/12345/registrations/1297612 HTTP/1.1
-Host: app.campdoc.com
-Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
-```
-
-Response `200 OK`:
-
-```json
-{
-   "id": 1297612,
-   "profileID": 12345,
-   "groupID": 67890,
-   "type": "patient"
-}
-```
-
 ## Register a Profile to a Group
 
 Route:
@@ -99,6 +82,33 @@ Response `201 Created`:
   "profileID": 12345,
   "groupID": 67890,
   "type": "patient"
+}
+```
+
+## Review a Specific Registration
+
+Route:
+
+```
+GET /api/organizations/<orgID>/profiles/<profileID>/registrations/<registrationID>
+```
+
+Request:
+
+```
+GET /api/organizations/21437/profiles/12345/registrations/1297612 HTTP/1.1
+Host: app.campdoc.com
+Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
+```
+
+Response `200 OK`:
+
+```json
+{
+   "id": 1297612,
+   "profileID": 12345,
+   "groupID": 67890,
+   "type": "patient"
 }
 ```
 

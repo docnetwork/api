@@ -26,13 +26,77 @@ The same profile, using your own `identifier`, "participant123abc":
 /api/organizations/12345/profiles/-participant123abc
 ```
 
+## ROUTES:
+
+```
+GET   /api/organizations/:orgID/profiles
+POST  /api/organizations/:orgID/profiles
+GET   /api/organizations/:orgID/profiles/:profileID
+PUT   /api/organizations/:orgID/profiles/:profileID
+GET   /api/organizations/:orgID/profiles/:profileID/reviews
+```
+
+
 ## Retrieve all profiles in an organization
 
 Route:
 
 ```
-GET /api/organizations/<orgID>/profiles
+GET   /api/organizations/:orgID/profiles
 ```
+
+Request:
+
+```
+GET /api/organizations/21437/profiles/all HTTP/1.1
+Host: app.campdoc.com
+Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
+```
+
+Response `200 OK`:
+
+```json
+[
+  {
+    "id": 10815,
+    "profile_id": 10815,
+    "givenName": "Bill",
+    "middleName": null,
+    "familyName": "Abbey",
+    "dob": "2003-08-14",
+    "sex": "Male",
+    "phase": null,
+    "has": {...},
+    "age": 13,
+    "properties": {...},
+    "organizationID": 21437,
+    "identifier": null,
+    "completeness": 84,
+    "avatar": {...},
+    "profileTags": null
+  },
+  {
+    "id": 10813,
+    "profile_id": 10813,
+    "givenName": "Richard",
+    "middleName": null,
+    "familyName": "Abbott",
+    "dob": "2005-05-23",
+    "sex": "Male",
+    "phase": "future",
+    "has": {...},
+    "age": 11,
+    "properties": {...},
+    "organizationID": 21437,
+    "identifier": null,
+    "completeness": 61,
+    "avatar": {...},
+    "profileTags": null
+  },
+  ...
+]
+```
+
 
 ## Retrieve a Profile
 
@@ -63,47 +127,6 @@ Response `200 OK`:
   "sex": "Male",
   "phase": "present",
   "completeness": 100
-}
-```
-
-## Retrieve a Profile's Reviews
-
-Route:
-
-```
-GET /api/organizations/<orgID>/profiles/<profileID>/reviews
-```
-
-Request:
-
-```
-GET /organizations/21437/profiles/197715/reviews HTTP/1.1
-Host: app.campdoc.com
-Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
-```
-
-Response `200 OK`:
-
-```json
-{
-  "Medical": {
-    "status": "Yes",
-    "timestamp": "2014-07-15T13:55:33.941Z",
-    "sticky": false,
-    "provider": {
-      "name": "Jane Smith",
-      "email": "jane@campdoc.com"
-    }
-  },
-  "General": {
-    "status": "No",
-    "timestamp": "2014-06-12T13:19:08.738Z",
-    "sticky": true,
-    "provider": {
-      "name": "John Smith",
-      "email": "john@campdoc.com"
-    }
-  }
 }
 ```
 
@@ -179,5 +202,46 @@ Response `200 OK`:
   "dob": "1986-09-20",
   "sex": "Male",
   "phase": "present"
+}
+```
+
+## Retrieve a Profile's Reviews
+
+Route:
+
+```
+GET /api/organizations/<orgID>/profiles/<profileID>/reviews
+```
+
+Request:
+
+```
+GET /organizations/21437/profiles/197715/reviews HTTP/1.1
+Host: app.campdoc.com
+Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
+```
+
+Response `200 OK`:
+
+```json
+{
+  "Medical": {
+    "status": "Yes",
+    "timestamp": "2014-07-15T13:55:33.941Z",
+    "sticky": false,
+    "provider": {
+      "name": "Jane Smith",
+      "email": "jane@campdoc.com"
+    }
+  },
+  "General": {
+    "status": "No",
+    "timestamp": "2014-06-12T13:19:08.738Z",
+    "sticky": true,
+    "provider": {
+      "name": "John Smith",
+      "email": "john@campdoc.com"
+    }
+  }
 }
 ```

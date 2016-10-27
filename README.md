@@ -7,3 +7,4 @@
 3. Groups (*Coming Soon*)
 4. [Users](/chapters/04-users.md)
 5. [Registrations](/chapters/05-registrations.md)
+6. [Tags](/chapters/06-tags.md)

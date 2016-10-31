@@ -10,11 +10,11 @@ A registration object contains the following fields:
 ## Routes:
 
 ```
-GET     /api/organizations/:orgID/profiles/:profileID/registrations
-POST    /api/organizations/:orgID/profiles/:profileID/registrations
-GET     /api/organizations/:orgID/profiles/:profileID/registrations/:registrationID
-PUT     /api/organizations/:orgID/profiles/:profileID/registrations/:registrationID
-DELETE  /api/organizations/:orgID/profiles/:profileID/registrations/:registrationID
+GET     /api/organizations/{orgID}/profiles/{profileID}/registrations
+POST    /api/organizations/{orgID}/profiles/{profileID}/registrations
+GET     /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
+PUT     /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
+DELETE  /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
 ```
 
 ## Review a Profile's Registrations
@@ -22,7 +22,7 @@ DELETE  /api/organizations/:orgID/profiles/:profileID/registrations/:registratio
 Route:
 
 ```
-GET /api/organizations/<orgID>/profiles/<profileID>/registrations
+GET /api/organizations/{orgID}/profiles/{profileID}/registrations
 ```
 
 Request:
@@ -57,7 +57,7 @@ Response `200 OK`:
 Route:
 
 ```
-POST /api/organizations/<orgID>/profiles/<profileID>/registrations
+POST /api/organizations/{orgID}/profiles/{profileID}/registrations
 ```
 
 Request:
@@ -90,7 +90,7 @@ Response `201 Created`:
 Route:
 
 ```
-GET /api/organizations/<orgID>/profiles/<profileID>/registrations/<registrationID>
+GET /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
 ```
 
 Request:
@@ -117,7 +117,7 @@ Response `200 OK`:
 Route:
 
 ```
-PUT /api/organizations/<orgID>/profiles/<profileID>/registrations/<registrationID>
+PUT /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
 ```
 
 Request:
@@ -149,7 +149,7 @@ Response `200 OK`:
 Route:
 
 ```
-DELETE /api/organizations/<orgID>/profiles/<profileID>/registrations/<registrationID>
+DELETE /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
 ```
 
 Request:

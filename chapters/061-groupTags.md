@@ -4,7 +4,7 @@
 
 Route:
 ```
-GET /api/organizations/:orgID/tags
+GET /api/organizations/{orgID}/tags
 ```
 Request:
 ```
@@ -62,7 +62,7 @@ Response `200 OK`:
 
 Route:
 ```
-POST /api/organizations/:orgID/tags
+POST /api/organizations/{orgID}/tags
 ```
 
 Request:
@@ -114,7 +114,7 @@ Response `201 Created`:
 
 Route:
 ```
-GET /api/organizations/:orgID/tags/tag/:tagID
+GET /api/organizations/{orgID}/tags/tag/{tagID}
 ```
 
 Request:

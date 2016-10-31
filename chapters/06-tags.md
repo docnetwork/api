@@ -44,10 +44,10 @@ A Profile Tag object contains the following fields:
 
 ## Routes
 ```
-GET /organizations/:orgID/profiles/:profileID/tags
-POST /organizations/:orgID/profiles/:profileID/tags
-GET /organizations/:orgID/profiles/:profileID/tags/tag/:tagID
-PUT /organizations/:orgID/profiles/:profileID/tags/tag/:tagID **[Coming soon]**
+GET /organizations/{orgID}/profiles/{profileID}/tags
+POST /organizations/{orgID}/profiles/{profileID}/tags
+GET /organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
+PUT /organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID} **[Coming soon]**
 ```
 ### Read More
 For more information on Profile Tags, please [click here](/chapters/062-profileTags.md).

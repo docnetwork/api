@@ -12,7 +12,7 @@ A profile object contains the following fields:
 - `phase`  **[READ-ONLY]** Describes if the profile is relevant in the ["past", "present", "future"]
 - `completeness` **[READ-ONLY]** The completeness of the profile's health form, from `0` - `100`
 
-In routes that reference a specific profile, you'll find a `<profileID>` parameter, which refers to DocNetwork's `id` field on the profile.  You can replace `<profileID>` with your own `identifier`, if applicable.  The parameter *must* be prefixed with a dash (`-`) when using `identifier`.  Example:
+In routes that reference a specific profile, you'll find a `{profileID}` parameter, which refers to DocNetwork's `id` field on the profile.  You can replace `{profileID}` with your own `identifier`, if applicable.  The parameter *must* be prefixed with a dash (`-`) when using `identifier`.  Example:
 
 Using DocNetwork's `id` field:
 
@@ -29,11 +29,11 @@ The same profile, using your own `identifier`, "participant123abc":
 ## ROUTES:
 
 ```
-GET   /api/organizations/:orgID/profiles
-POST  /api/organizations/:orgID/profiles
-GET   /api/organizations/:orgID/profiles/:profileID
-PUT   /api/organizations/:orgID/profiles/:profileID
-GET   /api/organizations/:orgID/profiles/:profileID/reviews
+GET   /api/organizations/{orgID}/profiles
+POST  /api/organizations/{orgID}/profiles
+GET   /api/organizations/{orgID}/profiles/{profileID}
+PUT   /api/organizations/{orgID}/profiles/{profileID}
+GET   /api/organizations/{orgID}/profiles/{profileID}/reviews
 ```
 
 
@@ -42,7 +42,7 @@ GET   /api/organizations/:orgID/profiles/:profileID/reviews
 Route:
 
 ```
-GET   /api/organizations/:orgID/profiles
+GET   /api/organizations/{orgID}/profiles
 ```
 
 Request:
@@ -103,7 +103,7 @@ Response `200 OK`:
 Route:
 
 ```
-GET /api/organizations/<orgID>/profiles/<profileID>
+GET /api/organizations/{orgID}/profiles/{profileID}
 ```
 
 Request:
@@ -135,7 +135,7 @@ Response `200 OK`:
 Route:
 
 ```
-POST /api/organizations/<orgID>/profiles
+POST /api/organizations/{orgID}/profiles
 ```
 
 Request:
@@ -174,7 +174,7 @@ Response `201 Created`:
 When making updates to a record, you don't need to include the entire record or even its required fields.  A partial record will work.  If you do include a required field, it cannot be set to `null`.
 
 ```
-PUT /api/organizations/<orgID>/profiles/<profileID>
+PUT /api/organizations/{orgID}/profiles/{profileID}
 ```
 
 Request:
@@ -210,7 +210,7 @@ Response `200 OK`:
 Route:
 
 ```
-GET /api/organizations/<orgID>/profiles/<profileID>/reviews
+GET /api/organizations/{orgID}/profiles/{profileID}/reviews
 ```
 
 Request:

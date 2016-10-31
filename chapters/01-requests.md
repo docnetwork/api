@@ -14,21 +14,21 @@ These domains can be used interchangeably.  You'll be accessing the same applica
 The inclusion of one of these domains is assumed throughout the rest of the documentation.  This API route:
 
 ```
-GET https://app.campdoc.com/api/organizations/<orgID>/profiles/<profileID>
+GET https://app.campdoc.com/api/organizations/{orgID}/profiles/{profileID}
 ```
 
 would only be referred to by its pathname:
 
 ```
-GET /api/organizations/<orgID>/profiles/<profileID>
+GET /api/organizations/{orgID}/profiles/{profileID}
 ```
 
 ## Parameters
 
-All routes make use of parameters. Parameters are marked with angle brackets (`<` and `>`) where routes are defined in the documentation.  For instance, the following route contains two parameters, `orgID` and `profileID`:
+All routes make use of parameters. Parameters are marked with angle brackets (`{` and `}`) where routes are defined in the documentation.  For instance, the following route contains two parameters, `orgID` and `profileID`:
 
 ```
-GET /api/organizations/<orgID>/profiles/<profileID>/users
+GET /api/organizations/{orgID}/profiles/{profileID}/users
 ```
 
 When we actually call that route, we'll include an appropriate `orgID` and `profileID`, which will properly point to the resource(s) we want:

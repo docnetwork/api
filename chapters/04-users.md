@@ -11,7 +11,7 @@ A user object contains the following fields.  They are read-only in all cases ex
 Route:
 
 ```
-GET /api/organizations/<orgID>/profiles/<profileID>/users
+GET /api/organizations/{orgID}/profiles/{profileID}/users
 ```
 
 Request:
@@ -48,7 +48,7 @@ This method is recommended when setting up a single-sign-on solution (vs invitin
 Route:
 
 ```
-POST /api/organizations/<orgID>/profiles/<profileID>/users
+POST /api/organizations/{orgID}/profiles/{profileID}/users
 ```
 
 Request:
@@ -83,7 +83,7 @@ Response `201 Created`:
 Route:
 
 ```
-POST /api/organizations/<orgID>/sso/<email>
+POST /api/organizations/{orgID}/sso/{email}
 ```
 
 Request:

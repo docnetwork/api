@@ -22,10 +22,11 @@ A Group Tag object contains the following fields:
 
 ## Routes
 ```
-GET /organizations/:orgID/tags
-POST /organizations/:orgID/tags
-GET /organizations/:orgID/tags/tag/:tagID
-PUT /organizations/:orgID/tags/tag/:tagID **[Coming soon]**
+GET /organizations/{orgID}/tags
+POST /organizations/{orgID}/tags
+GET /organizations/{orgID}/tags/tag/{tagID}
+PUT /organizations/{orgID}/tags/tag/{tagID}
+DELETE /organizations/{orgID}/tags/tag/{tagID}
 ```
 ### Read More
 For more information on Group Tags, please [click here](/chapters/061-groupTags.md).
@@ -47,7 +48,8 @@ A Profile Tag object contains the following fields:
 GET /organizations/{orgID}/profiles/{profileID}/tags
 POST /organizations/{orgID}/profiles/{profileID}/tags
 GET /organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
-PUT /organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID} **[Coming soon]**
+PUT /organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
+DELETE /organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
 ```
 ### Read More
 For more information on Profile Tags, please [click here](/chapters/062-profileTags.md).
@@ -112,6 +114,7 @@ There are several considerations needed when creating group or profile tags. The
  - Must have a `value`
  - There can only be one level of children for each group tag. Cannot assign a child tag's `ID` as another tag's `parentID`.
  - Cannot create tags with duplicate `value`s and `parentID`s (e.g. If there's a top-level tag with `value` 'Favorite Color', you cannot create another top-level tag with that `value`. You could create a tag with that `value` but a different `parentID`)
+ - Cannot have their `parentID` updated
 - Profile Tags
  - Must have a `tagID` and either an `optionID` or a `value`. Cannot have both.
  - `tagID` must point to a top-level group tag.

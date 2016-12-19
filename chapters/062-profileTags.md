@@ -97,8 +97,6 @@ Response `201 Created`:
 
 ## Get an individual Profile Tag
 
-> Note: PUT and DELETE support is not currently available for this route. It is planned for a future release. If you urgently need this support for your use, please reach out to your API contact.
-
 Route:
 ```
 GET /api/organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
@@ -121,6 +119,69 @@ Response `200 OK`:
   "value": "Green",
   "created": "2016-09-02T14:06:13.088Z",
   "updated": "2016-09-02T14:06:13.088Z",
+  "deactivated": null
+}
+```
+
+## Deactivate an individual Profile Tag
+
+Route:
+```
+DELETE /api/organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
+```
+
+Request:
+```
+DELETE /api/organizations/21437/profiles/543210/tags/tag/1239 HTTP/1.1
+Host: app.campdoc.com
+Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
+```
+
+Response `200 OK`:
+```json
+{
+  "id": 1239,
+  "profileID": 543210,
+  "tagID": 2345,
+  "optionID": null,
+  "value": "Green",
+  "created": "2016-09-02T14:06:13.088Z",
+  "updated": "2016-09-03T15:10:20.090Z",
+  "deactivated": "2016-09-03T15:10:20.090Z"
+}
+```
+
+## Update an individual Group Tag
+
+> Note: not all fields are required in the body to update a tag. To reactivate a deactivated tag, pass `"deactivated":null` as part of the request body.
+
+Route:
+```
+PUT /api/organizations/{orgID}/profiles/profile/{profileID}/tags/tag/{tagID}
+```
+
+Request:
+```
+PUT /api/organizations/21437/profiles/543210/tags/tag/1239 HTTP/1.1
+Host: app.campdoc.com
+Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
+
+{
+  "value": "Purple",
+  "deactivated": null
+}
+```
+
+Response `200 OK`:
+```json
+{
+  "id": 1239,
+  "profileID": 543210,
+  "tagID": 2345,
+  "optionID": null,
+  "value": "Purple",
+  "created": "2016-09-02T14:06:13.088Z",
+  "updated": "2016-09-03T15:10:20.090Z",
   "deactivated": null
 }
 ```

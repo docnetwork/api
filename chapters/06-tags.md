@@ -114,7 +114,7 @@ There are several considerations needed when creating group or profile tags. The
  - Must have a `value`
  - There can only be one level of children for each group tag. Cannot assign a child tag's `ID` as another tag's `parentID`.
  - Cannot create tags with duplicate `value`s and `parentID`s (e.g. If there's a top-level tag with `value` 'Favorite Color', you cannot create another top-level tag with that `value`. You could create a tag with that `value` but a different `parentID`)
- - Cannot have their `parentID` updated
+ - `parentID` cannot be updated
 - Profile Tags
  - Must have a `tagID` and either an `optionID` or a `value`. Cannot have both.
  - `tagID` must point to a top-level group tag.

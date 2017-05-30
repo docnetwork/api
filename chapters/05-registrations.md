@@ -17,6 +17,41 @@ PUT     /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrat
 DELETE  /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
 ```
 
+## Review Registrations for a Group
+
+Route:
+
+```
+GET /api/organizations/{orgID}/groups/{groupID}/registrations
+```
+
+Request:
+
+```
+GET /api/organizations/21437/groups/31258/registrations HTTP/1.1
+Host: app.campdoc.com
+Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
+```
+
+Response `200 OK`:
+
+```json
+[
+ {
+     "id": 1297612,
+     "profileID": 12345,
+     "groupID": 31258,
+     "type": "patient"
+  },
+  {
+    "id": 1297613,
+    "profileID": 12346,
+    "groupID": 31258,
+    "type": "provider"
+  }
+]
+```
+
 ## Review a Profile's Registrations
 
 Route:
@@ -44,7 +79,7 @@ Response `200 OK`:
      "type": "patient"
   },
   {
-    "id": 1297612,
+    "id": 1297613,
     "profileID": 12345,
     "groupID": 67892,
     "type": "provider"

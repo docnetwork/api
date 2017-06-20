@@ -42,7 +42,7 @@ GET   /api/organizations/{orgID}/profiles/{profileID}/reviews
 Route:
 
 ```
-GET   /api/organizations/{orgID}/profiles
+GET   /api/organizations/{orgID}/profiles/all
 ```
 
 Request:

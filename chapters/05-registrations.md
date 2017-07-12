@@ -41,12 +41,14 @@ Response `200 OK`:
      "id": 1297612,
      "profileID": 12345,
      "groupID": 31258,
+     "groupName": "Session 1",
      "type": "patient"
   },
   {
     "id": 1297613,
     "profileID": 12346,
     "groupID": 31258,
+    "groupName": "Session 1",
     "type": "provider"
   }
 ]
@@ -76,12 +78,14 @@ Response `200 OK`:
      "id": 1297612,
      "profileID": 12345,
      "groupID": 67890,
+     "groupName": "Session 2",
      "type": "patient"
   },
   {
     "id": 1297613,
     "profileID": 12345,
     "groupID": 67892,
+    "groupName": "Session 3",
     "type": "provider"
   }
 ]
@@ -143,7 +147,8 @@ Response `200 OK`:
    "id": 1297612,
    "profileID": 12345,
    "groupID": 67890,
-   "type": "patient"
+   "groupName": "Session 2",
+   "type": "patient",
 }
 ```
 

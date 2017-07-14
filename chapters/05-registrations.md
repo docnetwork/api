@@ -19,6 +19,8 @@ DELETE  /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrat
 
 ## Review Registrations for a Group
 
+This route allows you to review registrations to the selected group, as well as any registrations for subgroups of the selected group.
+
 Route:
 
 ```

@@ -97,6 +97,10 @@ Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
 
 When sending a `POST` or `PUT` request, we're normally transmitting data.  This data should be JSON format in the body of the request.  When making these requests, be sure to add an appropriate `Content-Type` header specifying `application/json`.  You'll see an example of this in the `POST` request in the examples section, below.
 
+## Rate Limiting
+
+Each API key is limited to 1000 requests every 15 minutes, which is slightly more than 1 request per second. This applies to all methods, and exceeding the number of allotted requests will result in a `429` response code for any request sent until the request volume falls below the limit.
+
 ## Example Requests
 
 The following are examples of valid http requests through our API.

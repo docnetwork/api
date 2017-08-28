@@ -99,7 +99,7 @@ When sending a `POST` or `PUT` request, we're normally transmitting data.  This 
 
 ## Rate Limiting
 
-Each API key is limited to 1000 requests every 15 minutes, which is slightly more than 1 request per second. This applies to all methods, and exceeding the number of allotted requests will result in a `429` response code for any request sent until the request volume falls below the limit.
+Each API key is limited to 2500 requests every 15 minutes, which is slightly more than 2.5 requests per second. This applies to all methods, and exceeding the number of allotted requests will result in a `429` response code for any request sent until the request volume falls below the limit.
 
 ## Example Requests
 

@@ -20,6 +20,16 @@ A group object contains the following fields:
 - `name` The group's name
 - `parentID` The ID of the parent node
 - `parents` An array of all parent node IDs (self inclusive)
+- `description` User-set description of the group
+- `tuition` Integer value, in cents, of the group's tuition
+- `capacity` Overall capacity or sex-based cpacities for the group
+- `start` Date the group session begins
+- `finish` Date the group session ends
+- `registrationOpen` Date that participants may start registering for the group
+- `registrationClose` Date that registration for the group closes
+- `phase` Indicates the phase of the group. Can be `past`, `present`, or `future`
+- `created` Timestamp of the group's creation
+- `updated` Timestamp of the group's last update
 
 Groups are read-only, and are returned as a flat array of nodes.
 
@@ -27,7 +37,10 @@ Groups are read-only, and are returned as a flat array of nodes.
 
 ```
 GET     /api/organizations/{orgID}/groups
+GET     /api/organizations/{orgID}/groups/{groupID}
 ```
+
+## Retrieve all groups in an organization
 
 Request:
 
@@ -124,3 +137,37 @@ Response `200 OK`:
   }
 ]
 ```
+
+## Retrieve a group
+
+Request:
+
+```
+GET /api/organizations/21437/groups/81258 HTTP/1.1
+Host: app.campdoc.com
+Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
+```
+
+Response `200 OK`:
+
+{
+  "id": 81258,
+  "name": "Session 1",
+  "description": "Come for some fun in the sun at Camp Discovery!",
+  "tuition": 1000,
+  "capacity": "20",
+  "parentID": 81256,
+  "parents": [
+    21437,
+    81255,
+    81256,
+    81258
+  ],
+  "start": "2017-06-23",
+  "finish": "2017-07-03",
+  "registrationOpen": "2017-04-01",
+  "registrationClose": "2017-06-01",
+  "phase": "past",
+  "created": "2016-12-14T20:08:25.345Z",
+  "updated": "2017-09-01T14:34:49.796Z"
+}

@@ -101,6 +101,11 @@ When sending a `POST` or `PUT` request, we're normally transmitting data.  This 
 
 Each API key is limited to 2500 requests every 15 minutes, which is slightly more than 2.5 requests per second. This applies to all methods, and exceeding the number of allotted requests will result in a `429` response code for any request sent until the request volume falls below the limit.
 
+We include custom headers to facilitate rate limiting:
+- `X-RateLimit-Limit` contains the number of allotted requests for a 15 minute interval
+- `X-RateLimit-Remaining` contains the number of remaining requests for the current 15 minute interval
+- If the allotted number of requests is exceeded, the `Retry-After` header will indicate when more requests will be available
+
 ## Example Requests
 
 The following are examples of valid http requests through our API.

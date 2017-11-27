@@ -150,6 +150,7 @@ Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
 
 Response `200 OK`:
 
+```json
 {
   "id": 81258,
   "name": "Session 1",
@@ -171,3 +172,4 @@ Response `200 OK`:
   "created": "2016-12-14T20:08:25.345Z",
   "updated": "2017-09-01T14:34:49.796Z"
 }
+```

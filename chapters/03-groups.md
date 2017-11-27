@@ -22,7 +22,7 @@ A group object contains the following fields:
 - `parents` An array of all parent node IDs (self inclusive)
 - `description` User-set description of the group
 - `tuition` Integer value, in cents, of the group's tuition
-- `capacity` Overall capacity or sex-based cpacities for the group
+- `capacity` Overall capacity or sex-based capacities for the group
 - `start` Date the group session begins
 - `finish` Date the group session ends
 - `registrationOpen` Date that participants may start registering for the group

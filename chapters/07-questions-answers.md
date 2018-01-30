@@ -52,7 +52,8 @@ Response `200 OK`:
 ]
 ```
 
-## Get all answers for a question
+## Get answers for a question
+This route accepts an optional `updated` query string to filter returned answers to only those updated since the provided date. The format of the query string must be `YYYY-MM-DD`.
 
 Route:
 
@@ -92,6 +93,28 @@ Response `200 OK`:
     "value": "Answer 3",
     "created": "2015-06-27 00:09:48.132",
     "updated": "2017-12-01 00:09:48.132"
+  }
+]
+```
+
+Request:
+
+```
+GET /api/organizations/21437/questions/12345/answers?updated=2017-12-02 HTTP/1.1
+Host: app.campdoc.com
+Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
+```
+
+Response `200 OK`:
+
+```json
+[
+  {
+    "questionID": 12345,
+    "profileID": 6789,
+    "value": "Answer 1",
+    "created": "2017-12-01 13:23:57.576",
+    "updated": "2017-12-15 21:14:00.012"
   }
 ]
 ```

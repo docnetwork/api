@@ -6,6 +6,10 @@ A registration object contains the following fields:
 - `groupID` **[REQUIRED]** The ID of the group the profile is registered to
 - `profileID` **[REQUIRED]** The ID of the profile
 - `type` **[REQUIRED]** Whether the profile is registered as ["patient", "provider"]
+- `groupName` **[READ-ONLY]** Name of the group associated with the registration
+- `created` **[READ-ONLY]** Timestamp of the registration's creation
+- `updated` **[READ-ONLY]** Timestamp of when the registration was last updated
+- `deactivated` Timestamp of when the registration was deactivated. `NULL` indicates an active registration
 
 ## Routes:
 
@@ -40,18 +44,24 @@ Response `200 OK`:
 ```json
 [
  {
-     "id": 1297612,
-     "profileID": 12345,
-     "groupID": 31258,
-     "groupName": "Session 1",
-     "type": "patient"
+    "id": 1297612,
+    "profileID": 12345,
+    "groupID": 31258,
+    "groupName": "Session 1",
+    "type": "patient",
+    "created": "2018-01-01 17:30:17.829",
+    "updated": "2018-01-01 17:30:17.829",
+    "deactivated": null
   },
   {
     "id": 1297613,
     "profileID": 12346,
     "groupID": 31258,
     "groupName": "Session 1",
-    "type": "provider"
+    "type": "provider",
+    "created": "2018-01-01 17:30:17.829",
+    "updated": "2018-01-02 07:20:17.123",
+    "deactivated": null
   }
 ]
 ```
@@ -77,18 +87,24 @@ Response `200 OK`:
 ```json
 [
   {
-     "id": 1297612,
-     "profileID": 12345,
-     "groupID": 67890,
-     "groupName": "Session 2",
-     "type": "patient"
+    "id": 1297612,
+    "profileID": 12345,
+    "groupID": 67890,
+    "groupName": "Session 2",
+    "type": "patient",
+    "created": "2018-01-01 17:30:17.829",
+    "updated": "2018-01-01 17:30:17.829",
+    "deactivated": null
   },
   {
     "id": 1297613,
     "profileID": 12345,
     "groupID": 67892,
     "groupName": "Session 3",
-    "type": "provider"
+    "type": "provider",
+    "created": "2018-01-01 17:30:17.829",
+    "updated": "2018-01-01 23:32:47.123",
+    "deactivated": "2018-01-01 23:32:47.123"
   }
 ]
 ```
@@ -122,7 +138,11 @@ Response `201 Created`:
   "id": 1297612,
   "profileID": 12345,
   "groupID": 67890,
-  "type": "patient"
+  "groupName": "Session 2",
+  "type": "patient",
+  "created": "2018-01-01 17:30:17.829",
+  "updated": "2018-01-01 17:30:17.829",
+  "deactivated": null
 }
 ```
 
@@ -146,11 +166,14 @@ Response `200 OK`:
 
 ```json
 {
-   "id": 1297612,
-   "profileID": 12345,
-   "groupID": 67890,
-   "groupName": "Session 2",
-   "type": "patient",
+  "id": 1297612,
+  "profileID": 12345,
+  "groupID": 67890,
+  "groupName": "Session 2",
+  "type": "patient",
+  "created": "2018-01-01 17:30:17.829",
+  "updated": "2018-01-01 17:30:17.829",
+  "deactivated": null
 }
 ```
 
@@ -182,7 +205,11 @@ Response `200 OK`:
   "id": 1297612,
   "profileID": 12345,
   "groupID": 67891,
-  "type": "patient"
+  "groupName": "Session 3",
+  "type": "patient",
+  "created": "2018-01-01 17:30:17.829",
+  "updated": "2018-02-01 11:35:50.123",
+  "deactivated": null
 }
 ```
 
@@ -204,3 +231,39 @@ Content-Type: application/json
 ```
 
 Response `204`
+
+## Reactivate a Registration
+
+Route:
+
+```
+PUT /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
+```
+
+Request:
+
+```
+PUT /api/organizations/21437/profiles/12345/registrations/1297612 HTTP/1.1
+Host: app.campdoc.com
+Authorization: Basic MTIzNDU6NTU5NmFmMGEtMTM1Ni00NmQxLWIyMTctMmRhYTM1YzkzNGYw
+Content-Type: application/json
+
+{
+  "deactivated": null
+}
+```
+
+Response `200 OK`:
+
+```json
+{
+  "id": 1297612,
+  "profileID": 12345,
+  "groupID": 67891,
+  "groupName": "Session 3",
+  "type": "patient",
+  "created": "2018-01-01 17:30:17.829",
+  "updated": "2018-02-02 13:05:01.456",
+  "deactivated": null
+}
+```

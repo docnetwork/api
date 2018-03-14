@@ -151,13 +151,13 @@ Response `200 OK`:
 }
 ```
 
-## Update an individual Group Tag
+## Update an individual Profile Tag
 
 > Note: not all fields are required in the body to update a tag. To reactivate a deactivated tag, pass `"deactivated":null` as part of the request body.
 
 Route:
 ```
-PUT /api/organizations/{orgID}/profiles/profile/{profileID}/tags/tag/{tagID}
+PUT /api/organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
 ```
 
 Request:

@@ -44,6 +44,7 @@ A Profile Tag object contains the following fields:
  - `deactivated` Timestamp of when the tag was deactivated. Deactivated tags will not appear in reports.
 
 ## Routes
+Note that the `{tagID}` used in these routes is the ID of the profile tag instance, not the group tag. This is the `id` property on each object returned by the `GET /{profileID}/tags` route.
 ```
 GET /organizations/{orgID}/profiles/{profileID}/tags
 POST /organizations/{orgID}/profiles/{profileID}/tags

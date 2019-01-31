@@ -1,10 +1,12 @@
 # Users
 
-A user object contains the following fields.  They are read-only in all cases except when initially creating the user:
+A user object contains the following fields.  They are read-only in all cases except when initially creating the user. It is not necessary to include the user's phone or mailing address. If not included, the user will be required to enter a valid address and phone number when they first access their user:
 
 - `email` **[READ-ONLY]** The user's email address
 - `givenName` **[READ-ONLY]** The user's given name
 - `familyName` **[READ-ONLY]** The user's family name
+- `phone` **[READ-ONLY]** The user's phone number
+- `location` **[READ-ONLY]** The user's mailing address
 
 ## Get a Profile's Users
 
@@ -30,7 +32,7 @@ Response `200 OK`:
     "email": "zoe@campdoc.com",
     "givenName": "Zoe",
     "familyName": "Washburn"
-  },
+  }
   {
     "email": "hoban@campdoc.com",
     "givenName": "Hoban",
@@ -62,7 +64,16 @@ Content-Type: application/json
 {
   "email": "zoe@campdoc.com",
   "givenName": "Zoe",
-  "familyName": "Washburn"
+  "familyName": "Washburn",
+  "phone": "6038929300",
+    "location": {
+                "addr1": "15 New Sudbury St",
+                "city": "Boston",
+                "state": "MA",
+                "zip": "02203",              
+                "country": "United States",
+                "formatted": "15 New Sudbury St, Boston, MA, 02203, United States"
+}
 }
 ```
 
@@ -104,6 +115,6 @@ Response `201 Created`:
     "givenName": "Hoban",
     "familyName": "Washburn"
   },
-  "expires": "2015-02-17T22:02:23.165Z"
+  "expires": "2019-02-17T22:02:23.165Z"
 }
 ```

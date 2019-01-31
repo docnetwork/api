@@ -32,7 +32,7 @@ Response `200 OK`:
     "email": "zoe@campdoc.com",
     "givenName": "Zoe",
     "familyName": "Washburn"
-  }
+  },
   {
     "email": "hoban@campdoc.com",
     "givenName": "Hoban",

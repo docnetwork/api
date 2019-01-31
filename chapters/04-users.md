@@ -73,7 +73,7 @@ Content-Type: application/json
                 "zip": "02203",              
                 "country": "United States",
                 "formatted": "15 New Sudbury St, Boston, MA, 02203, United States"
-}
+                }
 }
 ```
 

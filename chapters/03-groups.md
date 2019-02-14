@@ -17,6 +17,7 @@ Discovery
 A group object contains the following fields:
 
 - `id` The group's primary key
+- `groupIdentifier` The group's unique, custom identifier
 - `name` The group's name
 - `parentID` The ID of the parent node
 - `parents` An array of all parent node IDs (self inclusive)
@@ -60,7 +61,8 @@ Response `200 OK`:
     "parentID": null,
     "parents": [
       21437
-    ]
+    ],
+    "groupIdentifier": null
   },
   {
     "id": 81255,
@@ -69,7 +71,8 @@ Response `200 OK`:
     "parents": [
       21437,
       81255
-    ]
+    ],
+    "groupIdentifier": null
   },
   {
     "id": 81256,
@@ -79,7 +82,8 @@ Response `200 OK`:
       21437,
       81255,
       81256
-    ]
+    ],
+    "groupIdentifier": "2017CamperIdentifier"
   },
   {
     "id": 81257,
@@ -89,7 +93,8 @@ Response `200 OK`:
       21437,
       81255,
       81257
-    ]
+    ],
+    "groupIdentifier": null
   },
   {
     "id": 81258,
@@ -100,7 +105,8 @@ Response `200 OK`:
       81255,
       81256,
       81258
-    ]
+    ],
+    "groupIdentifier": "sessionOneIdentifier"
   },
   {
     "id": 81259,
@@ -111,7 +117,8 @@ Response `200 OK`:
       81255,
       81256,
       81259
-    ]
+    ],
+    "groupIdentifier": "sessionTwoIdentifier"
   },
   {
     "id": 81266,
@@ -122,7 +129,8 @@ Response `200 OK`:
       81255,
       81257,
       81266
-    ]
+    ],
+    "groupIdentifier": null
   },
   {
     "id": 81267,
@@ -133,7 +141,8 @@ Response `200 OK`:
       81255,
       81257,
       81267
-    ]
+    ],
+    "groupIdentifier": null
   }
 ]
 ```
@@ -153,6 +162,7 @@ Response `200 OK`:
 ```json
 {
   "id": 81258,
+  "groupIdentifier": "sessionOneIdentifier",
   "name": "Session 1",
   "description": "Come for some fun in the sun at Camp Discovery!",
   "tuition": 1000,

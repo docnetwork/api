@@ -41,7 +41,7 @@ GET     /api/organizations/{orgID}/groups
 GET     /api/organizations/{orgID}/groups/{groupID}
 ```
 ## Retrieve all groups in an organization
-Groups returned by this route have a truncated set of properties. The properties that will be included are `id`, `name`, `parentID`, `parentss`, and `groupIdentifier`. For the full set of a group's properties, use the [retrieve group](#retrieve_group) route.
+Groups returned by this route have a truncated set of properties. The properties that will be included are `id`, `name`, `parentID`, `parents`, and `groupIdentifier`. For the full set of a group's properties, use the [retrieve group](#retrieve_group) route.
 
 Request:
 

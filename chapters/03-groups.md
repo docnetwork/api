@@ -40,8 +40,8 @@ Groups are read-only, and are returned as a flat array of nodes.
 GET     /api/organizations/{orgID}/groups
 GET     /api/organizations/{orgID}/groups/{groupID}
 ```
-
 ## Retrieve all groups in an organization
+Groups returned by this route have a truncated set of properties. The properties that will be included are `id`, `name`, `parentID`, `parents`, and `groupIdentifier`. For the full set of a group's properties, use the [retrieve group](#retrieve_group) route.
 
 Request:
 
@@ -147,7 +147,7 @@ Response `200 OK`:
 ]
 ```
 
-## Retrieve a group
+## <a name="retrieve_group"></a> Retrieve a group
 
 Request:
 
@@ -166,7 +166,10 @@ Response `200 OK`:
   "name": "Session 1",
   "description": "Come for some fun in the sun at Camp Discovery!",
   "tuition": 1000,
-  "capacity": "20",
+  "capacity": {
+    "female": "20",
+    "male": ""
+  },
   "parentID": 81256,
   "parents": [
     21437,

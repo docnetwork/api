@@ -12,7 +12,7 @@ A profile object contains the following fields:
 - `phase`  **[READ-ONLY]** Describes if the profile is relevant in the ["past", "present", "future"]
 - `completeness` **[READ-ONLY]** The completeness of the profile's health form, from `0` - `100`
 
-In routes that reference a specific profile, you'll find a `{profileID}` parameter, which refers to DocNetwork's `id` field on the profile.  You can replace `{profileID}` with your own `identifier`, if applicable.  The parameter *must* be prefixed with a dash (`-`) when using `identifier`.  Example:
+In routes that reference a specific profile, you'll find a `{profileID}` parameter, which refers to DocNetwork's `id` field on the profile.  You can replace `{profileID}` with your own `identifier`, if the target profile has been created or updated with its `identifier`. Importantly, the parameter *must* be prefixed with a dash (`-`) when using an `identifier`.  Example:
 
 Using DocNetwork's `id` field:
 
@@ -25,6 +25,7 @@ The same profile, using your own `identifier`, "participant123abc":
 ```
 /api/organizations/12345/profiles/-participant123abc
 ```
+Note the `-` in front of the `identifier`.
 
 ## ROUTES:
 
@@ -131,6 +132,7 @@ Response `200 OK`:
 ```
 
 ## Create a Profile
+To create a profile, you _must_ include at least the following required fields: `givenName` and `familyName`. You may also include the other profile fields, but they aren't required.
 
 Route:
 
@@ -171,7 +173,7 @@ Response `201 Created`:
 
 ## Update a Profile
 
-When making updates to a record, you don't need to include the entire record or even its required fields.  A partial record will work.  If you do include a required field, it cannot be set to `null`.
+When making updates to a record, you only need to include the fields you want to update. That is, you _don't_ need to include the required fields or those fields you aren't updating. However, if you do include a required field, it can't be set to `null`.
 
 ```
 PUT /api/organizations/{orgID}/profiles/{profileID}

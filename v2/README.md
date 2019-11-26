@@ -2,4 +2,4 @@
 
 ## Chapters
 
-1. [Requests](/chapters/01-requests.md)
+1. [Requests](/chapters/requests.md)

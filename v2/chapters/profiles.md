@@ -146,15 +146,17 @@ Response `201 Created`:
 
 ```json
 {
-  "id": 197715,
-  "identifier": null,
-  "givenName": "Malcom",
-  "middleName": null,
-  "familyName": "Reynolds",
-  "dob": "1986-09-20",
-  "sex": "Male",
-  "phase": "present",
-  "completeness": 0
+  "profile": {
+    "id": 197715,
+    "identifier": null,
+    "givenName": "Malcom",
+    "middleName": null,
+    "familyName": "Reynolds",
+    "dob": "1986-09-20",
+    "sex": "Male",
+    "phase": "present",
+    "completeness": 0
+  }
 }
 ```
 
@@ -182,15 +184,17 @@ Response `200 OK`:
 
 ```json
 {
-  "id": 197715,
-  "identifier": null,
-  "givenName": "Malcom",
-  "middleName": "Mal",
-  "familyName": "Reynolds",
-  "dob": "1986-09-20",
-  "sex": "Male",
-  "phase": "present",
-  "completeness": 0
+  "profile": {
+    "id": 197715,
+    "identifier": null,
+    "givenName": "Malcom",
+    "middleName": "Mal",
+    "familyName": "Reynolds",
+    "dob": "1986-09-20",
+    "sex": "Male",
+    "phase": "present",
+    "completeness": 0
+  }
 }
 ```
 

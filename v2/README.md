@@ -2,4 +2,5 @@
 
 ## Chapters
 
-1. [Requests](/chapters/requests.md)
+1. [Authorization](./chapters/oauth.md)
+2. [Requests](./chapters/requests.md)

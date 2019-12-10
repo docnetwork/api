@@ -25,7 +25,7 @@ GET /api/organizations/{orgID}/profiles/{profileID}
 
 ## Parameters
 
-All routes make use of parameters. Parameters are marked with angle brackets (`{` and `}`) where routes are defined in the documentation.  For instance, the following route contains two parameters, `orgID` and `profileID`:
+All routes make use of parameters. Parameters are marked with curly brackets (`{` and `}`) where routes are defined in the documentation.  For instance, the following route contains two parameters, `orgID` and `profileID`:
 
 ```
 GET /api/organizations/{orgID}/profiles/{profileID}/users

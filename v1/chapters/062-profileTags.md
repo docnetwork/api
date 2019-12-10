@@ -42,7 +42,7 @@ Response `200 OK`:
 
 > Note: This route will accept either a JSON object or an array of JSON objects to create one or more tags. If one fails to save it will not interrupt the creation of other tags. After all request objects have been processed, the response object will return with two arrays representing what did and did not save. The `failed` array will contain error messages to help debug issues.
 
-> If you need to know what is allowed and disallowed when creating tags, view the `Configuration` section in the [main tags documentation](/chapters/06-tags.md).
+> If you need to know what is allowed and disallowed when creating tags, view the `Configuration` section in the [main tags documentation](/v1/chapters/06-tags.md).
 
 Route:
 ```

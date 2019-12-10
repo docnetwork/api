@@ -29,7 +29,7 @@ PUT /organizations/{orgID}/tags/tag/{tagID}
 DELETE /organizations/{orgID}/tags/tag/{tagID}
 ```
 ### Read More
-For more information on Group Tags, please [click here](/chapters/061-groupTags.md).
+For more information on Group Tags, please [click here](/v1/chapters/061-groupTags.md).
 
 
 ## Profile Tags
@@ -53,7 +53,7 @@ PUT /organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
 DELETE /organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
 ```
 ### Read More
-For more information on Profile Tags, please [click here](/chapters/062-profileTags.md).
+For more information on Profile Tags, please [click here](/v1/chapters/062-profileTags.md).
 
 
 ## Configuration

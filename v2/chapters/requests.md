@@ -134,13 +134,14 @@ Responds with
 {
   "profile": {
     "id": 54322,
-    "phase": "current",
-    "completeness": 100,
-    "identifier": "uniqueIdentifier",
-    "givenName": "Timmy",
-    "familyName": "Little",
-    "dob": "2010-01-01",
-    "sex": "Male"
+    "phase": "present",
+    "completeness": null,
+    "identifier": null,
+    "givenName": "Malcom",
+    "middleName": null,
+    "familyName": "Reynolds",
+    "dob": "1986-09-20",
+    "sex": null
   }
 }
 ```

@@ -96,7 +96,7 @@ GET /v2/organizations/{orgID}/profiles/{profileID}
 Request:
 
 ```
-GET /organizations/12345/profiles/10813 HTTP/1.1
+GET /v2/organizations/12345/profiles/10813 HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -129,11 +129,13 @@ POST /v2/organizations/{orgID}/profiles
 
 Request:
 
-```json
-POST /organizations/12345/profiles HTTP/1.1
+```
+POST /v2/organizations/12345/profiles HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
+```
 
+```json
 {
   "givenName": "Malcom",
   "familyName": "Reynolds",
@@ -170,11 +172,13 @@ PUT /v2/organizations/{orgID}/profiles/{profileID}
 
 Request:
 
-```json
-PUT /organizations/12345/profiles/197715 HTTP/1.1
+```
+PUT /v2/organizations/12345/profiles/197715 HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
+```
 
+```json
 {
   "middleName": "Mal"
 }
@@ -209,7 +213,7 @@ GET /v2/organizations/{orgID}/profiles/{profileID}/reviews
 Request:
 
 ```
-GET /organizations/12345/profiles/197715/reviews HTTP/1.1
+GET /v2/organizations/12345/profiles/197715/reviews HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -230,23 +234,23 @@ Response `200 OK`:
   },
   "reviews": {
     "Medical": {
-    "status": "Yes",
-    "timestamp": "2014-07-15T13:55:33.941Z",
-    "sticky": false,
-    "provider": {
-      "name": "Jane Smith",
-      "email": "jane@campdoc.com"
+      "status": "Yes",
+      "timestamp": "2014-07-15T13:55:33.941Z",
+      "sticky": false,
+      "provider": {
+        "name": "Jane Smith",
+        "email": "jane@campdoc.com"
+      }
+    },
+    "General": {
+      "status": "No",
+      "timestamp": "2014-06-12T13:19:08.738Z",
+      "sticky": true,
+      "provider": {
+        "name": "John Smith",
+        "email": "john@campdoc.com"
+      }
     }
-  },
-  "General": {
-    "status": "No",
-    "timestamp": "2014-06-12T13:19:08.738Z",
-    "sticky": true,
-    "provider": {
-      "name": "John Smith",
-      "email": "john@campdoc.com"
-    }
-  }
   }
 }
 ```

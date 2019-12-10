@@ -92,7 +92,7 @@ The following are examples of valid http requests through our API.
 Retrieving information on users associated with profile `54321`, who belongs to organization `12345`:
 
 ```
-GET /api/organizations/12345/profiles/54321/users HTTP/1.1
+GET /v2/organizations/12345/profiles/54321/users HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -116,11 +116,13 @@ Responds with
 
 Creating a new profile under organization `12345`:
 
-```json
-POST /api/organizations/12345/profiles HTTP/1.1
+```
+POST /v2/organizations/12345/profiles HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
+```
 
+```json
 {
   "givenName": "Malcom",
   "familyName": "Reynolds",

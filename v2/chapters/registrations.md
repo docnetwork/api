@@ -16,12 +16,12 @@ A registration object contains the following fields:
 ## Routes:
 
 ```
-GET     /api/organizations/{orgID}/groups/{groupID}/registrations
-GET     /api/organizations/{orgID}/profiles/{profileID}/registrations
-POST    /api/organizations/{orgID}/profiles/{profileID}/registrations
-GET     /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
-PUT     /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
-DELETE  /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
+GET     /v2/organizations/{orgID}/groups/{groupID}/registrations
+GET     /v2/organizations/{orgID}/profiles/{profileID}/registrations
+POST    /v2/organizations/{orgID}/profiles/{profileID}/registrations
+GET     /v2/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
+PUT     /v2/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
+DELETE  /v2/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
 ```
 
 ## Review Registrations for a Group
@@ -31,13 +31,13 @@ This route allows you to review registrations to the selected group, as well as 
 Route:
 
 ```
-GET /api/organizations/{orgID}/groups/{groupID}/registrations
+GET /v2/organizations/{orgID}/groups/{groupID}/registrations
 ```
 
 Request:
 
 ```
-GET /api/organizations/12345/groups/31258/registrations HTTP/1.1
+GET /v2/organizations/12345/groups/31258/registrations HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -79,13 +79,13 @@ Response `200 OK`:
 Route:
 
 ```
-GET /api/organizations/{orgID}/profiles/{profileID}/registrations
+GET /v2/organizations/{orgID}/profiles/{profileID}/registrations
 ```
 
 Request:
 
 ```
-GET /api/organizations/12345/profiles/12345/registrations HTTP/1.1
+GET /v2/organizations/12345/profiles/12345/registrations HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -127,13 +127,13 @@ Response `200 OK`:
 Route:
 
 ```
-POST /api/organizations/{orgID}/profiles/{profileID}/registrations
+POST /v2/organizations/{orgID}/profiles/{profileID}/registrations
 ```
 
 Request:
 
 ```
-POST /api/organizations/12345/profiles/12345/registrations HTTP/1.1
+POST /v2/organizations/12345/profiles/12345/registrations HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
 
@@ -164,7 +164,7 @@ Response `201 Created`:
 Request:
 
 ```
-POST /api/organizations/12345/profiles/12345/registrations HTTP/1.1
+POST /v2/organizations/12345/profiles/12345/registrations HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
 
@@ -195,13 +195,13 @@ Response `201 Created`:
 Route:
 
 ```
-GET /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
+GET /v2/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
 ```
 
 Request:
 
 ```
-GET /api/organizations/12345/profiles/12345/registrations/1297612 HTTP/1.1
+GET /v2/organizations/12345/profiles/12345/registrations/1297612 HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -228,13 +228,13 @@ Response `200 OK`:
 Route:
 
 ```
-DELETE /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
+DELETE /v2/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
 ```
 
 Request:
 
 ```
-DELETE /api/organizations/12345/profiles/12345/registrations/1297612 HTTP/1.1
+DELETE /v2/organizations/12345/profiles/12345/registrations/1297612 HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -245,13 +245,13 @@ Response `204 No Content`
 Route:
 
 ```
-PUT /api/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
+PUT /v2/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
 ```
 
 Request:
 
 ```
-PUT /api/organizations/12345/profiles/12345/registrations/1297612 HTTP/1.1
+PUT /v2/organizations/12345/profiles/12345/registrations/1297612 HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
 

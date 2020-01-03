@@ -10,18 +10,26 @@ A user object contains the following fields:
 
 > Note: Fields may only be edited on user creation. If phone or location data are not included, the user will be required to enter this information when they access their account.
 
+## ROUTES
+```
+GET    /v2/organizations/{orgID}/profiles/{profileID}/users
+POST   /v2/organizations/{orgID}/profiles/{profileID}/users
+DELETE /v2/organizations/{orgID}/profiles/{profileID}/users
+POST   /v2/organizations/{orgID}/sso/{email}
+```
+
 ## Get a Profile's Users
 
 Route:
 
 ```
-GET /api/organizations/{orgID}/profiles/{profileID}/users
+GET /v2/organizations/{orgID}/profiles/{profileID}/users
 ```
 
 Request:
 
 ```
-GET /api/organizations/12345/profiles/197715/users HTTP/1.1
+GET /v2/organizations/12345/profiles/197715/users HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -51,13 +59,13 @@ Response `200 OK`:
 Route:
 
 ```
-POST /api/organizations/{orgID}/profiles/{profileID}/users
+POST /v2/organizations/{orgID}/profiles/{profileID}/users
 ```
 
 Request:
 
 ```
-POST /api/organizations/12345/profiles/197715/users HTTP/1.1
+POST /v2/organizations/12345/profiles/197715/users HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
 
@@ -79,6 +87,28 @@ Content-Type: application/json
 
 Response `201 Created`
 
+## Unlink a profile and user
+
+> This action will deactivate the link between the given profile and user. The user may be re-added to the profile with a standard POST request.
+
+Route:
+```
+DELETE /v2/organizations/{orgID}/profiles/{profileID}/users
+```
+
+Request:
+```
+DELETE /v2/organizations/12345/profiles/12345/users
+Host: app.campdoc.com
+Content-Type: application/json
+
+{
+  "email": "zoe@campdoc.com"
+}
+```
+
+Response `204 No Content`
+
 ## Generate Sign-On Link (SSO)
 
 > Generate an SSO link to allow the specified user to access their account without entering an email address or password. Links are valid for 60 minutes and may only be used once.
@@ -86,13 +116,13 @@ Response `201 Created`
 Route:
 
 ```
-POST /api/organizations/{orgID}/sso/{email}
+POST /v2/organizations/{orgID}/sso/{email}
 ```
 
 Request:
 
 ```
-POST /api/organizations/12345/sso/zoe@campdoc.com HTTP/1.1
+POST /v2/organizations/12345/sso/zoe@campdoc.com HTTP/1.1
 Host: app.campdoc.com
 ```
 

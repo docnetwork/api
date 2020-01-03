@@ -14,5 +14,6 @@
 | profiles:write      | View and edit Profiles |
 | registrations:read  | View Registrations |
 | registrations:write | View and edit Registrations |
+| sso:generate        | Generate Single Sign-On links |
 | users:read          | View Users |
 | users:write         | View and edit Users |

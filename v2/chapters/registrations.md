@@ -147,15 +147,18 @@ Response `201 Created`:
 
 ```json
 {
-  "id": 1297612,
-  "profileID": 12345,
-  "groupID": 67890,
-  "type": "patient",
-  "waitlisted": false,
-  "groupIdentifier": "sessionTwoIdentifier",
-  "created": "2018-01-01 17:30:17.829",
-  "updated": "2018-01-01 17:30:17.829",
-  "deactivated": null
+  "registration": {
+    "id": 1297612,
+    "profileID": 12345,
+    "groupID": 67890,
+    "type": "patient",
+    "waitlisted": false,
+    "groupName": "Session 2",
+    "groupIdentifier": "sessionTwoIdentifier",
+    "created": "2018-01-01 17:30:17.829",
+    "updated": "2018-01-01 17:30:17.829",
+    "deactivated": null
+  }
 }
 ```
 
@@ -178,15 +181,18 @@ Response `201 Created`:
 
 ```json
 {
-  "id": 1297612,
-  "profileID": 12345,
-  "groupID": 67890,
-  "groupName": "Session 2",
-  "groupIdentifier": "sessionTwoIdentifier",
-  "type": "patient",
-  "created": "2018-01-01 17:30:17.829",
-  "updated": "2018-01-01 17:30:17.829",
-  "deactivated": null
+  "registration": {
+    "id": 1297612,
+    "profileID": 12345,
+    "groupID": 67890,
+    "type": "patient",
+    "waitlisted": false,
+    "groupName": "Session 2",
+    "groupIdentifier": "sessionTwoIdentifier",
+    "created": "2018-01-01 17:30:17.829",
+    "updated": "2018-01-01 17:30:17.829",
+    "deactivated": null
+  }
 }
 ```
 

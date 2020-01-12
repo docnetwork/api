@@ -12,12 +12,12 @@ A profile object contains the following fields:
 - `phase`  **[READ-ONLY]** Describes if the profile is relevant in the ["past", "present", "future"]
 - `completeness` **[READ-ONLY]** The completeness of the profile's health form, from `0` - `100`
 
-In routes that reference a specific profile, you'll find a `{profileID}` parameter, which refers to DocNetwork's `id` field on the profile.  You can replace `{profileID}` with your own `identifier` if the target profile has been created or updated with its `identifier`. When using a profile identifier, you must include a query string parameter `?identifier=true`  Example:
+> In routes that reference a specific profile, you'll find a `{profileID}` parameter, which refers to DocNetwork's `id` field on the profile.  You can replace `{profileID}` with your own `identifier` if the target profile has been created or updated with its `identifier`. When using a profile identifier, you must include a query string parameter `?identifier=true`  Example:
 
 Using DocNetwork's `id` field:
 
 ```
-/v2/organizations/12345/profiles/67890
+/v2/organizations/12345/profiles/10815
 ```
 
 The same profile, using your own `identifier`, "participant123abc":
@@ -39,10 +39,16 @@ GET   /v2/organizations/{orgID}/profiles/{profileID}/reviews
 
 ## Retrieve all profiles in an organization
 
-Route:
-
 ```
 GET   /v2/organizations/{orgID}/profiles
+```
+
+Accepeted Scopes:
+```
+all:read
+all:write
+profiles:read
+profiles:write
 ```
 
 Request:
@@ -87,10 +93,16 @@ Response `200 OK`:
 
 ## Retrieve a Profile
 
-Route:
-
 ```
 GET /v2/organizations/{orgID}/profiles/{profileID}
+```
+
+Accepted Scopes:
+```
+all:read
+all:write
+profiles:read
+profiles:write
 ```
 
 Request:
@@ -119,12 +131,17 @@ Response `200 OK`:
 ```
 
 ## Create a Profile
-To create a profile, you _must_ include at least the following required fields: `givenName` and `familyName`. You may also include the other profile fields, but they aren't required.
-
-Route:
 
 ```
 POST /v2/organizations/{orgID}/profiles
+```
+
+> To create a profile, you _must_ include at least the following required fields: `givenName` and `familyName`. You may also include the other profile fields, but they aren't required.
+
+Accepted Scopes:
+```
+all:write
+profiles:write
 ```
 
 Request:
@@ -149,7 +166,7 @@ Response `201 Created`:
 ```json
 {
   "profile": {
-    "id": 197715,
+    "id": 10816,
     "identifier": null,
     "givenName": "Malcom",
     "middleName": null,
@@ -164,16 +181,22 @@ Response `201 Created`:
 
 ## Update a Profile
 
-When making updates to a record, you only need to include the fields you want to update. That is, you _don't_ need to include the required fields or those fields you aren't updating. However, if you do include a required field, it can't be set to `null`.
-
 ```
 PUT /v2/organizations/{orgID}/profiles/{profileID}
+```
+
+> When making updates to a record, you only need to include the fields you want to update. That is, you _don't_ need to include the required fields or those fields you aren't updating. However, if you do include a required field, it cannot be set to `null`.
+
+Accepted Scopes:
+```
+all:write
+profiles:write
 ```
 
 Request:
 
 ```
-PUT /v2/organizations/12345/profiles/197715 HTTP/1.1
+PUT /v2/organizations/12345/profiles/10816 HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
 ```
@@ -189,7 +212,7 @@ Response `200 OK`:
 ```json
 {
   "profile": {
-    "id": 197715,
+    "id": 10816,
     "identifier": null,
     "givenName": "Malcom",
     "middleName": "Mal",
@@ -204,16 +227,22 @@ Response `200 OK`:
 
 ## Retrieve a Profile's Reviews
 
-Route:
-
 ```
 GET /v2/organizations/{orgID}/profiles/{profileID}/reviews
+```
+
+Accepted Scopes:
+```
+all:read
+all:write
+profiles:read
+profiles:write
 ```
 
 Request:
 
 ```
-GET /v2/organizations/12345/profiles/197715/reviews HTTP/1.1
+GET /v2/organizations/12345/profiles/10816/reviews HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -222,7 +251,7 @@ Response `200 OK`:
 ```json
 {
   "profile": {
-    "id": 197715,
+    "id": 10816,
     "identifier": null,
     "givenName": "Malcom",
     "middleName": "Mal",
@@ -232,8 +261,9 @@ Response `200 OK`:
     "phase": "present",
     "completeness": 0
   },
-  "reviews": {
-    "Medical": {
+  "reviews": [
+    {
+      "label": "Medical",
       "status": "Yes",
       "timestamp": "2014-07-15T13:55:33.941Z",
       "sticky": false,
@@ -242,7 +272,8 @@ Response `200 OK`:
         "email": "jane@campdoc.com"
       }
     },
-    "General": {
+    {
+      "label": "General",
       "status": "No",
       "timestamp": "2014-06-12T13:19:08.738Z",
       "sticky": true,
@@ -251,6 +282,6 @@ Response `200 OK`:
         "email": "john@campdoc.com"
       }
     }
-  }
+  ]
 }
 ```

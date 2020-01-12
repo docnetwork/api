@@ -48,6 +48,14 @@ GET /v2/organizations/{orgID}/groups
 
 > Groups returned by this route have a truncated set of properties. The properties that will be included are `id`, `name`, `parentID`, `parents`, and `groupIdentifier`. For the full set of a group's supported properties, use the [retrieve group](#retrieve_group) route.
 
+Accepted Scopes:
+```
+all:read
+all:write
+groups:read
+groups:write
+```
+
 Request:
 
 ```
@@ -157,6 +165,14 @@ Response `200 OK`:
 
 ```
 GET /v2/organizations/{orgID}/groups/{groupID}
+```
+
+Accepted Scopes:
+```
+all:read
+all:write
+groups:read
+groups:write
 ```
 
 Request:

@@ -8,7 +8,7 @@ A user object contains the following fields:
 - `phone` The user's phone number
 - `location` The user's mailing address
 
-> Note: Fields may only be edited on user creation. If phone or location data are not included, the user will be required to enter this information when they access their account.
+> Fields may only be edited on user creation. If phone or location data are not included, the user will be required to enter this information when they access their account.
 
 ## ROUTES
 ```
@@ -20,16 +20,22 @@ POST   /v2/organizations/{orgID}/sso/{email}
 
 ## Get a Profile's Users
 
-Route:
-
 ```
 GET /v2/organizations/{orgID}/profiles/{profileID}/users
+```
+
+Accepted Scopes:
+```
+all:read
+all:write
+users:read
+users:write
 ```
 
 Request:
 
 ```
-GET /v2/organizations/12345/profiles/197715/users HTTP/1.1
+GET /v2/organizations/12345/profiles/54321/users HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -54,18 +60,22 @@ Response `200 OK`:
 
 ## Create a User
 
-> Note: This action grants the created user immediate access to the profile specified in the request URI. User details cannot be edited after creation. If a user exists with the email address in your request, that existing user is granted access to the profile.
-
-Route:
-
 ```
 POST /v2/organizations/{orgID}/profiles/{profileID}/users
+```
+
+> This action grants the created user immediate access to the profile specified in the request URI. User details cannot be edited after creation. If a user exists with the email address in your request, that existing user is granted access to the profile.
+
+Accepted Scopes:
+```
+all:write
+users:write
 ```
 
 Request:
 
 ```
-POST /v2/organizations/12345/profiles/197715/users HTTP/1.1
+POST /v2/organizations/12345/profiles/54321/users HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
 
@@ -89,16 +99,20 @@ Response `201 Created`
 
 ## Unlink a profile and user
 
-> This action will deactivate the link between the given profile and user. The user may be re-added to the profile with a standard POST request.
-
-Route:
 ```
 DELETE /v2/organizations/{orgID}/profiles/{profileID}/users
+```
+> This action will deactivate the link between the given profile and user. The user may be re-added to the profile with a standard POST request.
+
+Accpeted Scopes:
+```
+all:write
+users:write
 ```
 
 Request:
 ```
-DELETE /v2/organizations/12345/profiles/12345/users
+DELETE /v2/organizations/12345/profiles/54321/users
 Host: app.campdoc.com
 Content-Type: application/json
 
@@ -111,12 +125,16 @@ Response `204 No Content`
 
 ## Generate Sign-On Link (SSO)
 
-> Generate an SSO link to allow the specified user to access their account without entering an email address or password. Links are valid for 60 minutes and may only be used once.
-
-Route:
-
 ```
 POST /v2/organizations/{orgID}/sso/{email}
+```
+
+> Generate an SSO link to allow the specified user to access their account without entering an email address or password. Links are valid for 60 minutes and may only be used once.
+
+Accepted Scopes:
+```
+all:write
+sso:generate
 ```
 
 Request:

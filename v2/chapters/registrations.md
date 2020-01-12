@@ -25,14 +25,18 @@ DELETE  /v2/organizations/{orgID}/profiles/{profileID}/registrations/{registrati
 ```
 
 ## Review Registrations for a Group
-
-This route allows you to review registrations to the selected group, as well as any registrations for subgroups of the selected group.
-
-Route:
-
 ```
 GET /v2/organizations/{orgID}/groups/{groupID}/registrations
 ```
+
+Accepted Scopes:
+```
+all:read
+all:write
+registrations:read
+registrations:write
+```
+
 
 Request:
 
@@ -48,7 +52,7 @@ Response `200 OK`:
   "registrations": [
     {
       "id": 1297612,
-      "profileID": 12345,
+      "profileID": 54321,
       "groupID": 31258,
       "type": "patient",
       "waitlisted": false,
@@ -60,7 +64,7 @@ Response `200 OK`:
     },
     {
       "id": 1297613,
-      "profileID": 12346,
+      "profileID": 54322,
       "groupID": 31258,
       "type": "provider",
       "waitlisted": false,
@@ -76,16 +80,22 @@ Response `200 OK`:
 
 ## Review a Profile's Registrations
 
-Route:
-
 ```
 GET /v2/organizations/{orgID}/profiles/{profileID}/registrations
+```
+
+Accepted Scopes:
+```
+all:read
+all:write
+registrations:read
+registrations:write
 ```
 
 Request:
 
 ```
-GET /v2/organizations/12345/profiles/12345/registrations HTTP/1.1
+GET /v2/organizations/12345/profiles/54321/registrations HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -96,7 +106,7 @@ Response `200 OK`:
   "registrations": [
     {
       "id": 1297612,
-      "profileID": 12345,
+      "profileID": 54321,
       "groupID": 67890,
       "type": "patient",
       "waitlisted": false,
@@ -108,7 +118,7 @@ Response `200 OK`:
     },
     {
       "id": 1297613,
-      "profileID": 12345,
+      "profileID": 54321,
       "groupID": 67892,
       "type": "provider",
       "waitlisted": false,
@@ -124,16 +134,20 @@ Response `200 OK`:
 
 ## Register a Profile to a Group
 
-Route:
-
 ```
 POST /v2/organizations/{orgID}/profiles/{profileID}/registrations
+```
+
+Accepted Scopes:
+```
+all:write
+registrations:write
 ```
 
 Request:
 
 ```
-POST /v2/organizations/12345/profiles/12345/registrations HTTP/1.1
+POST /v2/organizations/12345/profiles/54321/registrations HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
 
@@ -149,7 +163,7 @@ Response `201 Created`:
 {
   "registration": {
     "id": 1297612,
-    "profileID": 12345,
+    "profileID": 54321,
     "groupID": 67890,
     "type": "patient",
     "waitlisted": false,
@@ -162,12 +176,12 @@ Response `201 Created`:
 }
 ```
 
-> Note: Custom group identifiers can be used in place of DocNetwork's internal ID. When registering with an identifier, you must use a `groupIdentifier` key in your request body. If both a `groupID` and `groupIdentifier` are present in a request body, the `groupIdentifier` will take priority.
+> Custom group identifiers can be used in place of DocNetwork's internal ID. When registering with an identifier, you must use a `groupIdentifier` key in your request body. If both a `groupID` and `groupIdentifier` are present in a request body, the `groupIdentifier` will take priority.
 
 Request:
 
 ```
-POST /v2/organizations/12345/profiles/12345/registrations HTTP/1.1
+POST /v2/organizations/12345/profiles/54321/registrations HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
 
@@ -183,7 +197,7 @@ Response `201 Created`:
 {
   "registration": {
     "id": 1297612,
-    "profileID": 12345,
+    "profileID": 54321,
     "groupID": 67890,
     "type": "patient",
     "waitlisted": false,
@@ -198,16 +212,22 @@ Response `201 Created`:
 
 ## Review a Specific Registration
 
-Route:
-
 ```
 GET /v2/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
+```
+
+Accepted Scopes:
+```
+all:read
+all:write
+registrations:read
+registrations:write
 ```
 
 Request:
 
 ```
-GET /v2/organizations/12345/profiles/12345/registrations/1297612 HTTP/1.1
+GET /v2/organizations/12345/profiles/54321/registrations/1297612 HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -217,7 +237,7 @@ Response `200 OK`:
 {
   "registration": {
     "id": 1297612,
-    "profileID": 12345,
+    "profileID": 54321,
     "groupID": 67890,
     "groupName": "Session 2",
     "groupIdentifier": "sessionTwoIdentifier",
@@ -231,16 +251,20 @@ Response `200 OK`:
 
 ## Deactivate a Registration
 
-Route:
-
 ```
 DELETE /v2/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
+```
+
+Accepted Scopes:
+```
+all:write
+registrations:write
 ```
 
 Request:
 
 ```
-DELETE /v2/organizations/12345/profiles/12345/registrations/1297612 HTTP/1.1
+DELETE /v2/organizations/12345/profiles/54321/registrations/1297612 HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -248,16 +272,20 @@ Response `204 No Content`
 
 ## Reactivate a Registration
 
-Route:
-
 ```
 PUT /v2/organizations/{orgID}/profiles/{profileID}/registrations/{registrationID}
+```
+
+Accepted Scopes:
+```
+all:write
+registrations:write
 ```
 
 Request:
 
 ```
-PUT /v2/organizations/12345/profiles/12345/registrations/1297612 HTTP/1.1
+PUT /v2/organizations/12345/profiles/54321/registrations/1297612 HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
 
@@ -272,7 +300,7 @@ Response `200 OK`:
 {
   "registration": {
     "id": 1297612,
-    "profileID": 12345,
+    "profileID": 54321,
     "groupID": 67891,
     "groupName": "Session 3",
     "groupIdentifier": "sessionThreeIdentifier",

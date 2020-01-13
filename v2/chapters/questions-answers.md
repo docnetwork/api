@@ -91,22 +91,22 @@ Response `200 OK`:
       "questionID": 54321,
       "profileID": 6789,
       "value": "Answer 1",
-      "created": "2017-12-01 13:23:57.576",
-      "updated": "2017-12-15 21:14:00.012"
+      "created": "2017-12-01T13:23:57.57",
+      "updated": "2017-12-15T21:14:00.01"
     },
     {
       "questionID": 54321,
       "profileID": 1012,
       "value": "Answer 2",
-      "created": "2017-12-01 13:23:57.576",
-      "updated": "2017-12-01 13:23:57.576"
+      "created": "2017-12-01T13:23:57.57",
+      "updated": "2017-12-01T13:23:57.57"
     },
     {
       "questionID": 54321,
       "profileID": 3456,
       "value": "Answer 3",
-      "created": "2015-06-27 00:09:48.132",
-      "updated": "2017-12-01 00:09:48.132"
+      "created": "2015-06-27T00:09:48.13",
+      "updated": "2017-12-01T00:09:48.13"
     }
   ]
 }
@@ -128,8 +128,8 @@ Response `200 OK`:
       "questionID": 54321,
       "profileID": 6789,
       "value": "Answer 1",
-      "created": "2017-12-01 13:23:57.576",
-      "updated": "2017-12-15 21:14:00.012"
+      "created": "2017-12-01T13:23:57.57",
+      "updated": "2017-12-15T21:14:00.01"
     }
   ]
 }

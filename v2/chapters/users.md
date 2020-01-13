@@ -133,7 +133,6 @@ POST /v2/organizations/{orgID}/sso/{email}
 
 Accepted Scopes:
 ```
-all:write
 sso:generate
 ```
 

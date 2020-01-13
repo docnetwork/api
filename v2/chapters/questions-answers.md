@@ -45,16 +45,18 @@ Host: app.campdoc.com
 Response `200 OK`:
 
 ```json
-[
-  {
-    "id": 54321,
-    "label": "Question 1"
-  },
-  {
-    "id": 54322,
-    "label": "Question 2"
-  }
-]
+{
+  "questions": [
+    {
+      "id": 54321,
+      "label": "Question 1"
+    },
+    {
+      "id": 54322,
+      "label": "Question 2"
+    }
+  ]
+}
 ```
 
 ## Get answers for a question

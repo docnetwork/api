@@ -106,7 +106,7 @@ Response `201 Created`:
 ## Get an individual Profile Tag
 
 ```
-GET /v2/organizations/{orgID}/profiles/{profileID}/tags/{tagID}
+GET /v2/organizations/{orgID}/profiles/{profileID}/tags/{profileTagID}
 ```
 
 Accepted Scopes:
@@ -142,7 +142,7 @@ Response `200 OK`:
 ## Deactivate an individual Profile Tag
 
 ```
-DELETE /v2/organizations/{orgID}/profiles/{profileID}/tags/{tagID}
+DELETE /v2/organizations/{orgID}/profiles/{profileID}/tags/{profileTagID}
 ```
 
 Accepted Scopes:
@@ -176,7 +176,7 @@ Response `200 OK`:
 ## Update an individual Profile Tag
 
 ```
-PUT /v2/organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
+PUT /v2/organizations/{orgID}/profiles/{profileID}/tags/{profileTagID}
 ```
 
 > Not all fields are required in the body to update a tag. To reactivate a deactivated tag, pass `"deactivated":null` as part of the request body.

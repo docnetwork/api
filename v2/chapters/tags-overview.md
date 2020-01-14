@@ -48,9 +48,9 @@ Note that the `{tagID}` used in these routes is the ID of the profile tag instan
 ```
 GET    /v2/organizations/{orgID}/profiles/{profileID}/tags
 POST   /v2/organizations/{orgID}/profiles/{profileID}/tags
-GET    /v2/organizations/{orgID}/profiles/{profileID}/tags/{tagID}
-PUT    /v2/organizations/{orgID}/profiles/{profileID}/tags/{tagID}
-DELETE /v2/organizations/{orgID}/profiles/{profileID}/tags/{tagID}
+GET    /v2/organizations/{orgID}/profiles/{profileID}/tags/{profileTagID}
+PUT    /v2/organizations/{orgID}/profiles/{profileID}/tags/{profileTagID}
+DELETE /v2/organizations/{orgID}/profiles/{profileID}/tags/{profileTagID}
 ```
 ### Read More
 For more information on Profile Tags, please [click here](/v2/chapters/tags-profiles.md).

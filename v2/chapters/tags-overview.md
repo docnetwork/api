@@ -1,6 +1,6 @@
 # Tags
 
-Tags allow you to add custom data points to profiles. They are used to label, sort, and filter profiles on data that is not typically collected through the application. Since tags are flexible, organizations can use them for many purposes, such as Cabin Numbers, Homeroom assignments, Field Trip Activities, or almost any other custom metadata.
+Tags allow you to add custom data points to profiles. They are used to label, sort, and filter profiles on data that is not typically collected through the application. Since tags are flexible, organizations can use them for many purposes, such as Cabin Numbers, Homeroom Assignments, Field Trip Activities, or almost any other custom metadata.
 
 Tags are initially set up at the organization level, where they're referred to as "Group Tags". Applying an instance of a tag to a specific profile creates a "Profile Tag."
 
@@ -69,7 +69,6 @@ Assume we've created a group tag that looks like the following:
 As noted above, tags can be multiple choice or free text. If we want free text profile tags associated with this one, there's no more configuration needed for the group tags; we can create a profile tag with the following POST request body:
 ```json
 {
-  "profileID": 112233,
   "tagID": 54321,
   "value": "Blue"
 }
@@ -96,7 +95,6 @@ If we instead want to have a multiple choice group tag setup, we create a new gr
 Then, create a profile tag referencing the parent-child combination that we need.
 ```json
 {
-  "profileID": 112233,
   "tagID": 54321,
   "optionID": 54324
 }

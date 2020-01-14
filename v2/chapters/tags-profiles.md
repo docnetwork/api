@@ -1,7 +1,7 @@
 ## Retrieve a profile's tags
 
 ```
-GET /api/organizations/{orgID}/profiles/{profileID}/tags
+GET /v2/organizations/{orgID}/profiles/{profileID}/tags
 ```
 
 > This route supports a query parameter `?excludeDeactivated`, which will filter deactivated tags out of the response body.
@@ -16,7 +16,7 @@ profile_tags:write
 
 Request:
 ```
-GET /api/organizations/12345/profiles/332211/tags HTTP/1.1
+GET /v2/organizations/12345/profiles/332211/tags HTTP/1.1
 Host: app.campdoc.com
 ```
 Response `200 OK`:
@@ -50,7 +50,7 @@ Response `200 OK`:
 ## Create a new Profile Tag
 
 ```
-POST /api/organizations/{orgID}/profiles/{profileID}/tags
+POST /v2/organizations/{orgID}/profiles/{profileID}/tags
 ```
 
 > This route will accept either a JSON object or an array of JSON objects to create one or more tags. If one fails to save it will not interrupt the creation of other tags. After all request objects have been processed, the response object will return with two arrays representing what did and did not save. The `failed` array will contain error messages to help debug issues.
@@ -59,7 +59,7 @@ POST /api/organizations/{orgID}/profiles/{profileID}/tags
 
 Request:
 ```
-POST /api/organizations/12345/profiles/332211/tags HTTP/1.1
+POST /v2/organizations/12345/profiles/332211/tags HTTP/1.1
 Host: app.campdoc.com
 
 [
@@ -106,7 +106,7 @@ Response `201 Created`:
 ## Get an individual Profile Tag
 
 ```
-GET /api/organizations/{orgID}/profiles/{profileID}/tags/{tagID}
+GET /v2/organizations/{orgID}/profiles/{profileID}/tags/{tagID}
 ```
 
 Accepted Scopes:
@@ -119,7 +119,7 @@ profile_tags:write
 
 Request:
 ```
-GET /api/organizations/12345/profiles/332211/tags/1239 HTTP/1.1
+GET /v2/organizations/12345/profiles/332211/tags/1239 HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -142,7 +142,7 @@ Response `200 OK`:
 ## Deactivate an individual Profile Tag
 
 ```
-DELETE /api/organizations/{orgID}/profiles/{profileID}/tags/{tagID}
+DELETE /v2/organizations/{orgID}/profiles/{profileID}/tags/{tagID}
 ```
 
 Accepted Scopes:
@@ -153,7 +153,7 @@ profile_tags:write
 
 Request:
 ```
-DELETE /api/organizations/12345/profiles/332211/tags/1239 HTTP/1.1
+DELETE /v2/organizations/12345/profiles/332211/tags/1239 HTTP/1.1
 Host: app.campdoc.com
 ```
 
@@ -176,7 +176,7 @@ Response `200 OK`:
 ## Update an individual Profile Tag
 
 ```
-PUT /api/organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
+PUT /v2/organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
 ```
 
 > Not all fields are required in the body to update a tag. To reactivate a deactivated tag, pass `"deactivated":null` as part of the request body.
@@ -184,7 +184,7 @@ PUT /api/organizations/{orgID}/profiles/{profileID}/tags/tag/{tagID}
 
 Request:
 ```
-PUT /api/organizations/12345/profiles/332211/tags/1239 HTTP/1.1
+PUT /v2/organizations/12345/profiles/332211/tags/1239 HTTP/1.1
 Host: app.campdoc.com
 
 {

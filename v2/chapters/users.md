@@ -97,6 +97,8 @@ Content-Type: application/json
 
 Response `201 Created`
 
+> By default, the API will not send any invite or other notification to the created user's email address. To send a notification, include a `?notify=true` query in your request URI. This notification will inform the user they've been given access to a profile, and will include a link to access their account. This link will expire once used, or after 6 months by default. To set a custom expiration on the link, include another query `&inviteLinkExpiration=YYYY-MM-DD HH:mm:ss` in your request URI with a max value of 6 months. You may also pass a date with no time information to expire at midnight on the provided date. All values will be treated as UTC.
+
 ## Unlink a profile and user
 
 ```

@@ -5,6 +5,6 @@
 
 ## Versions
 
-~v1~ (DEPRECATED. If you need documentation, see the `deprecated` tag.)
+~v1~ (DEPRECATED. If you need documentation, see the [`deprecated`](https://github.com/docnetwork/api/tree/deprecated) tag.)
 
 [v2](/v2/README.md)

@@ -2,11 +2,12 @@
 
 ## Chapters
 
-1. [Authorization](./chapters/oauth.md)
-2. [Requests](./chapters/requests.md)
-3. [Profiles](./chapters/profiles.md)
-4. [Groups](./chapters/groups.md)
-5. [Users](./chapters/users.md)
-6. [Registrations](./chapters/registrations.md)
-7. [Questions & Answers](./chapters/questions-answers.md)
-8. [Tags](./chapters/tags-overview.md)
+1. [Onboarding](./chapters/onboarding.md)
+2. [Authorization](./chapters/oauth.md)
+3. [Requests](./chapters/requests.md)
+4. [Profiles](./chapters/profiles.md)
+5. [Groups](./chapters/groups.md)
+6. [Users](./chapters/users.md)
+7. [Registrations](./chapters/registrations.md)
+8. [Questions & Answers](./chapters/questions-answers.md)
+9. [Tags](./chapters/tags-overview.md)

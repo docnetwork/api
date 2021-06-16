@@ -6,7 +6,7 @@ A registration object contains the following fields:
 - `profileID` **[REQUIRED]** The ID of the profile
 - `groupID` **[REQUIRED]** The ID of the group the profile is registered to
 - `type` **[REQUIRED]** Whether the profile is registered as ["patient", "provider"]
-- `waitlisted` Boolean stating if the profile's registration is on a waitlist
+- `waitlisted` **[READ-ONLY]** Boolean stating if the profile's registration is on a waitlist
 - `groupName` **[READ-ONLY]** Name of the group associated with the registration
 - `groupIdentifier` **[READ-ONLY]** Unique identifier of the group associated with the registration
 - `created` **[READ-ONLY]** Timestamp of the registration's creation

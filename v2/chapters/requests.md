@@ -80,12 +80,15 @@ When you send us an API request, you _can_ (but don't need to) attach a unique i
 #### How do I use it?
 
 #### Examples
-- Request with empty header
-- Request with improperly formatted header
-  - 400 Response
-  - Specific message? Or just "Bad Request"?
-- Request with properly formatted header
-- Response with properly formatted header
+- If the `traceparent` header is empty, your response will look like the example below.
+- If the `traceparent` header is sent but but is improperly formatted, you will receive a 400 response
+- If the `traceparent` header is profiler formatted, your response will look like the example below and will contain the `traceparent` you sent.
+```
+POST /v2/organizations/12345/profiles HTTP/1.1
+Host: app.campdoc.com
+Content-Type: application/json
+traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01
+```
 ### Content-Type
 
 When sending a `POST` or `PUT` request, data should be in a JSON format in your request body.  When making these requests, be sure to add an appropriate `Content-Type` header specifying `application/json`.  You'll see an example of this in the `POST` request in the examples section below.

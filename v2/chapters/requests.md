@@ -72,11 +72,25 @@ Profiles can have any number of registrations to different groups within the sys
 
 - **Another nurse, John**, will only be working part of the summer.  He has two provider registrations, under "Session 2" and "Session 3".  John is only able to see patients registered under those two sessions.  John is Timmy's dad, and his user is associated with both the "John" profile (allowing provider access) and the "Timmy" profile (allowing patient/parent access).  He is able to interact with only "Session 2" and "Session 3" campers, and only while those sessions are taking place.
 
-## Content-Type
+## Supported Headers
+### Distributed Tracing
+Our API supports the [W3C `traceparent` header specification.](https://www.w3.org/TR/trace-context/#traceparent-header)
+#### What is this for?
+When you send us an API request, you _can_ (but don't need to) attach a unique identifier to it.
+#### How do I use it?
+
+#### Examples
+- Request with empty header
+- Request with improperly formatted header
+  - 400 Response
+  - Specific message? Or just "Bad Request"?
+- Request with properly formatted header
+- Response with properly formatted header
+### Content-Type
 
 When sending a `POST` or `PUT` request, data should be in a JSON format in your request body.  When making these requests, be sure to add an appropriate `Content-Type` header specifying `application/json`.  You'll see an example of this in the `POST` request in the examples section below.
 
-## Rate Limiting
+### Rate Limiting
 
 Each application is limited to 2500 requests every 15 minutes, which is slightly more than 2.5 requests per second. This applies to all methods, and exceeding the number of allotted requests will result in a `429` response code for any request sent until the request volume falls below the limit.
 

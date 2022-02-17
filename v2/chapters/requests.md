@@ -81,13 +81,14 @@ When you send us an API request, you _can_ (but don't need to) attach a unique i
 
 #### Examples
 - If the `traceparent` header is empty, your response will look like the example below.
-- If the `traceparent` header is sent but but is improperly formatted, you will receive a 400 response
-- If the `traceparent` header is profiler formatted, your response will look like the example below and will contain the `traceparent` you sent.
+- If the `traceparent` header is sent but is improperly formatted, you will receive a 400 response
+- If the `traceparent` header is profiler formatted, your response will look like the example below and will contain a new `traceparent` and the trace id under `x-dn-trace-id`.
 ```
 POST /v2/organizations/12345/profiles HTTP/1.1
 Host: app.campdoc.com
 Content-Type: application/json
 traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01
+x-dn-trace-id: 0af7651916cd43dd8448eb211c80319c
 ```
 ### Content-Type
 

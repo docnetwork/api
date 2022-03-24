@@ -131,6 +131,7 @@ Response `200 OK`:
   ]
 }
 ```
+> To exclude deactivated registrations from the response, you can use the `excludeDeactivated=true` query parameter.
 
 ## Register a Profile to a Group
 

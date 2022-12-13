@@ -1,0 +1,2156 @@
+{
+	"info": {
+		"_postman_id": "0ab68685-ed82-40d4-8896-c43e6462fc80",
+		"name": "DN Public API v2",
+		"description": "This collection contains all API calls that are possible via DocNetwork's Public API (v2). It's meant to help jumpstart your development process, try out features, and quickly troubleshoot bugs.\n\n## Tips and tricks\n\n### Use our other documentation\n\nWhen we sent your credentials, we should've included an Up and Running guide as well. If we didn't, please contact your DocNetwork team and ask for it! The steps in that guide should happen as a _precursor_ to using this collection with the sole exception of the Create Token from Code request.\n\n### Postman variables are essential\n\nThis collection makes heavy use of both Environment and Collection variables. To get the most out of them, you should do the same! Make sure to follow the steps in the \"Setting up this collection\" section.\n\nTo populate all of the values we provide here, you may have to use some of the POST calls to create resources (e.g. creating a profile or registration so you can store its ID).\n\n### What does \"deactivated\" mean?\n\nDeactivating a resource is the closest thing we allow to deleting it. Deactivated resources do not appear in the application, and you can't update deactivated resources other than to reactivate them.\n\nIn practice, you might deactivate a registration if a participant withdraws from a program. Or, if they withdraw from the institution entirely, you might deactivate their profile. You may also deactivate resources to clean up erroneous API calls.\n\n## Setting up this collection\n\n### Environment Variables\n\nThese variables are particular to a set of API creds, and change infrequently. You will probably have 2 sets of environment variables: one for your production account, and one for your sandbox.\n\n| **Variable Name / Type** | **Description** |\n| --- | --- |\n| `client_id`  <br>default | The Client ID for you application (provided with your credentials). |\n| `client_secret`  <br>secret | The Client Secret for you application (provided with your credentials). |\n| `org_id`  <br>default | The DocNetwork ID of the organization you're working on (provided with your credentials). |\n| `access_token`  <br>secret | You API Access Token. You'll get this via the Create Token from Code request the first time, then update it with the Refresh Token call. |\n| `refresh_token`  <br>secret | You API Refresh Token, used to get new access tokens as needed. You'll get this via the Create Token from Code request. It never changes for as long as this set of remains active (which is forever, unless you ask DocNetwork to deactivate them). |\n| `base_url`  <br>default | The base URL you'll use when making API requests (e.g. [https://app.campdoc.com/](https://app.campdoc.com/)) |\n| `scope`  <br>default | The [scope](https://github.com/docnetwork/api/blob/master/v2/chapters/scopes.md) you want to use when issuing a set of tokens. Only used for the EXAMPLE: Get Token Code request.  <br>  <br>For testing purposes, we suggest `write:all sso:generate` as your scope values so that you can test everything. |\n\n### Collection Variables\n\nAs you start exploring the API, you'll need to fill these in with values appropriate to your organization. These are more likely to change than your Environment Variables as you explore, debug, and test.\n\nNote: all of these variables are `default` type variables.\n\n| **Variable Name** | **Description** |\n| --- | --- |\n| `profileID` | The DocNetwork ID for a profile. |\n| `profileIdentifier` | Your ID for a profile (which must be specified when creating the profile or set via our application UI). |\n| `groupID` | The DocNetwork ID for a group. |\n| `groupIdentifier` | Your ID for a group (which must be specified when DocNetwork imports your group structure). |",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9698679"
+	},
+	"item": [
+		{
+			"name": "Groups",
+			"item": [
+				{
+					"name": "Get Groups",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/groups",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"groups"
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}"
+								}
+							]
+						},
+						"description": "Get all groups in the organization ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/groups.md#retrieve-all-groups-in-an-organization))."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/groups/:groupID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"groups",
+								":groupID"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"description": "Org ID"
+								},
+								{
+									"key": "groupID",
+									"value": "{{groupID}}",
+									"description": "The ID of the target group. May be either \"groupID\" or \"groupIdentifier\" (if identifier=true)."
+								}
+							]
+						},
+						"description": "Get details for a specific group ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/groups.md#-retrieve-a-group))."
+					},
+					"response": []
+				}
+			],
+			"description": "## What are Groups?\n\nGroups are the resources which represent an organization's structure. They include the organization itself, any programs which it runs, and any other important organizational information (e.g. the year, age group, etc.).\n\nFor more on groups, [see our documentation](https://github.com/docnetwork/api/blob/master/v2/chapters/groups.md).\n\n## Tips and Tricks\n\nWherever a `groupID` or route parameter is present, you may substitute the appropriate identifier if you're using your own unique IDs instead of DocNetwork's. To do this, specify the `identifier=true` query parameter and use the identifier in place of the ID.\n\n```\nGET {{base_url}}/public/v2/organizations/12345/groups/abc123?identifier=true\n\n```\n\n**As of writing in 2022, group data is read only.** Because group structure is deeply integrated in our Health Forms, we don't allow any modifications to it via the API. We've decided that the risk of unanticipated side effects outweighs the reward for now."
+		},
+		{
+			"name": "Profiles",
+			"item": [
+				{
+					"name": "Get All Profiles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles"
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string"
+								}
+							]
+						},
+						"description": "Lists all of the profiles in the organization ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/profiles.md#retrieve-all-profiles-in-an-organization))."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles",
+								":profileID"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string"
+								},
+								{
+									"key": "profileID",
+									"value": "{{profileID}}",
+									"description": "The ID of the target profile. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+								}
+							]
+						},
+						"description": "Get the details of a single profile ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/profiles.md#retrieve-a-profile)).\n\nThis doesn't provide any additional detail beyond what's available in the Get All Profiles call."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const sex = _.sample([ 'Male', 'Female', null ]);",
+									"pm.variables.set(\"profileSex\", sex);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identifier\": \"{{$randomUUID}}\",\n    \"givenName\": \"{{$randomFirstName}}\",\n    \"familyName\": \"{{$randomLastName}}\",\n    \"dob\": \"{{$randomDatePast}}\",\n    \"sex\": \"{{profileSex}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles"
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string"
+								}
+							]
+						},
+						"description": "Creates a profile ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/profiles.md#create-a-profile))."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const sex = _.sample([ 'Male', 'Female', null ]);",
+									"pm.variables.set(\"profileSex\", sex);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"givenName\": \"{{$randomFirstName}}\",\n    \"familyName\": \"{{$randomLastName}}\",\n    \"dob\": \"{{$randomDatePast}}\",\n    \"sex\": \"{{profileSex}}\",\n    \"deactivated\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles",
+								":profileID"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string"
+								},
+								{
+									"key": "profileID",
+									"value": "{{profileID}}",
+									"description": "The ID of the target profile. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+								}
+							]
+						},
+						"description": "Updates a profile ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/profiles.md#update-a-profile)).\n\nYou might do this if you need to change someone's demographic information."
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const sex = _.sample([ 'Male', 'Female', null ]);",
+									"pm.variables.set(\"profileSex\", sex);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deactivated\": \"2022-02-22T00:00:00.001Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles",
+								":profileID"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string"
+								},
+								{
+									"key": "profileID",
+									"value": "{{profileID}}",
+									"description": "The ID of the target profile. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+								}
+							]
+						},
+						"description": "Deactivates the target profile ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/profiles.md#deactivate-a-profile)).\n\nYou might do this if someone withdraws from an organization entirely."
+					},
+					"response": []
+				}
+			],
+			"description": "## What are Profiles?\n\nProfiles represent a person who attends an organization, either as a Staff Member or Participant. They're managed by Users, who enter information about the Profile into the CampDoc/SchoolDoc/DocNetwork application.\n\nFor more about how Profiles relate to Users, see [Data Model](https://github.com/docnetwork/api/blob/master/v2/chapters/data-model.md) and [Permission Structure](https://github.com/docnetwork/api/blob/master/v2/chapters/questions-answers.md#get-all-questions-for-an-organization) documentation.\n\n## Tips and Tricks\n\nWherever a or `profileID` route parameter is present, you may substitute the appropriate identifier if you're using your own unique IDs instead of DocNetwork's. To do this, specify the `identifier=true` query parameter and use the identifier in place of the ID.\n\n```\nGET {base_url}}/public/v2/organizations/12345/profiles/abc123?identifier=true\n\n```",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Profile Users",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles",
+								":profileID",
+								"users"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string"
+								},
+								{
+									"key": "profileID",
+									"value": "{{profileID}}",
+									"type": "string",
+									"description": "The ID of the target profile. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+								}
+							]
+						},
+						"description": "Lists all the users associated with a profile ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/users.md#get-a-profiles-users))."
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									"const fiveRandomDigits = Math.floor(Math.random()*90000) + 10000;",
+									"const threeishRandomDigits = Math.floor(Math.random()*900);",
+									"const unitTypes = [ 'Ste', 'Apt', '#', 'Unit' ];",
+									"const city = '{{$randomCity}}';",
+									"const addr1 = '{{$randomStreetAddress}}';",
+									"pm.variables.set('city', city);",
+									"pm.variables.set('addr1', addr1);",
+									"pm.variables.set('zip', fiveRandomDigits);",
+									"pm.variables.set('addr2', `${_.sample(unitTypes)} ${threeishRandomDigits}`);",
+									"pm.variables.set('state', 'MI');",
+									"pm.variables.set('country', 'US');"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"givenName\": \"{{$randomFirstName}}\",\n  \"middleName\": \"{{$randomFirstName}}\",\n  \"familyName\": \"{{$randomLastName}}\",\n  \"email\": \"{{$randomExampleEmail}}\",\n  \"phone\": \"{{$randomPhoneNumber}}\",\n  \"location\": {\n    \"zip\": \"{{zip}}\",\n    \"city\": \"{{city}}\",\n    \"addr1\": \"{{addr1}}\",\n    \"addr2\": \"{{addr2}}\",\n    \"state\": \"{{state}}\",\n    \"country\": \"{{country}}\",\n    \"formatted\": \"{{zip}}, {{city}}, {{state}}, {{zip}}, {{country}}\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/users?notify=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles",
+								":profileID",
+								"users"
+							],
+							"query": [
+								{
+									"key": "notify",
+									"value": "true",
+									"description": "Send a welcome email to the new users inviting them to set up their account. Use this flag unless the user will always log in via SSO."
+								},
+								{
+									"key": "identifier",
+									"value": "true",
+									"description": "Use profileIdentifier instead of DocNetwork's profileID to look up the profile.",
+									"disabled": true
+								},
+								{
+									"key": "inviteLinkExpiration",
+									"value": "2023-12-31",
+									"description": "Datetime at which the invite should expire in the format YYYY-MM-DD HH:mm:ss. Defaults to today plus 6 moths.",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string"
+								},
+								{
+									"key": "profileID",
+									"value": "{{profileID}}",
+									"type": "string",
+									"description": "The ID of the target profile. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+								}
+							]
+						},
+						"description": "Creates a new user for the profile ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/users.md#create-a-user))."
+					},
+					"response": []
+				},
+				{
+					"name": "Unlink User from Profile",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<email_address>\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles",
+								":profileID",
+								"users"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string"
+								},
+								{
+									"key": "profileID",
+									"value": "{{profileID}}",
+									"type": "string",
+									"description": "The ID of the target profile. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+								}
+							]
+						},
+						"description": "Unlinks a user from a profile, severing their ability to access and/or update the profile's information ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/users.md#unlink-a-profile-and-user)).\n\nWe don't allow outright deletion of users. This is the closest you can get."
+					},
+					"response": []
+				},
+				{
+					"name": "Generate SSO Link",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/sso/:email",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"sso",
+								":email"
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string"
+								},
+								{
+									"key": "email",
+									"value": "<email_address>",
+									"type": "string",
+									"description": "Email address of the user you want to create an SSO link for."
+								}
+							]
+						},
+						"description": "Creates a one-time-use link that allows the specified user to log in without entering an email address or password ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/users.md#generate-sign-on-link-sso))."
+					},
+					"response": []
+				}
+			],
+			"description": "## What are Users?\n\nUsers are the people who actually use the CampDoc/SchoolDoc/DocNetwork application. They may or may not be the people who attend the organization. For instance, they may manage Profiles for each of their children. If they _do_ attend the organization—whether as a staff member or a participant—they'll have tjheir own Profile, too.\n\nFor more about how Users relate to Profiles, see [Data Model](https://github.com/docnetwork/api/blob/master/v2/chapters/data-model.md) and [Permission Structure](https://github.com/docnetwork/api/blob/master/v2/chapters/questions-answers.md#get-all-questions-for-an-organization) documentation.\n\n## Tips and Tricks\n\n**You cannot delete users, nor you cannot update them after creation.** They can only be unlinked from profiles. Please use caution when creating them.\n\nWe're strict about this because a User can manage Profiles in multiple organizations. For example, you have kids in the Girl Scouts, but they also attend a different Summer Camp. Both use organizations use CampDoc. If we let an integration for one change a user's email address, that would change their login information for the other organization as well.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Registrations",
+			"item": [
+				{
+					"name": "Get Group Registrations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/groups/:groupID/registrations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"groups",
+								":groupID",
+								"registrations"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"description": "When true, uses the group identifier for lookup instead of group ID.",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string",
+									"description": "Organization ID"
+								},
+								{
+									"key": "groupID",
+									"value": "{{groupID}}",
+									"description": "The ID of the group you want to list all registrations for. May be either \"groupID\" or \"groupIdentifier\" (if identifier=true)."
+								}
+							]
+						},
+						"description": "Get all registrations for a group ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/groups.md#groups))."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile Registrations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/registrations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles",
+								":profileID",
+								"registrations"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"description": "When true, uses the profile identifier for lookup instead of profile ID.",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string",
+									"description": "Organization ID"
+								},
+								{
+									"key": "profileID",
+									"value": "{{profileID}}",
+									"type": "string",
+									"description": "Profile to Target. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+								}
+							]
+						},
+						"description": "Get all registrations for a profile ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/registrations.md#review-a-profiles-registrations))."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Profile Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"groupID\": {{groupID}},\n    \"type\": \"patient\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/registrations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles",
+								":profileID",
+								"registrations"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"description": "When true, uses the profile identifier for lookup instead of profile ID.",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string",
+									"description": "Organization ID"
+								},
+								{
+									"key": "profileID",
+									"value": "{{profileID}}",
+									"type": "string",
+									"description": "Profile to Target. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+								}
+							]
+						},
+						"description": "Creates a registration for a profile using a group ID ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/registrations.md#register-a-profile-to-a-group)).\n\n> **Note:** You can also use a group identifier to create a registration like so:  \n> `\"groupIdentifier\": \"{{groupIdentifier}}\"`  \n> This takes the place of the `groupID` key. Do not include both."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile Registration (single)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/registrations/:regID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles",
+								":profileID",
+								"registrations",
+								":regID"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"description": "When true, uses the profile identifier for lookup instead of profile ID.",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string",
+									"description": "Organization ID."
+								},
+								{
+									"key": "profileID",
+									"value": "{{profileID}}",
+									"type": "string",
+									"description": "Profile to Target. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+								},
+								{
+									"key": "regID",
+									"value": "4667276",
+									"type": "string",
+									"description": "ID of the registration to look up."
+								}
+							]
+						},
+						"description": "Get details for a particular registration ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/registrations.md#review-a-specific-registration))."
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate Profile Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deactivated\": \"2022-02-22T00:00:00.001Z\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/registrations/:regID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles",
+								":profileID",
+								"registrations",
+								":regID"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"description": "When true, uses the profile identifier for lookup instead of profile ID.",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string",
+									"description": "Organization ID."
+								},
+								{
+									"key": "profileID",
+									"value": "{{profileID}}",
+									"type": "string",
+									"description": "Profile to Target. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+								},
+								{
+									"key": "regID",
+									"value": "4667276",
+									"type": "string",
+									"description": "ID of the registration to modify."
+								}
+							]
+						},
+						"description": "Deactivates a registration ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/registrations.md#deactivate-a-registration))."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deactivated\": null\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/registrations/:regID",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles",
+								":profileID",
+								"registrations",
+								":regID"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"description": "When true, uses the profile identifier for lookup instead of profile ID.",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}",
+									"type": "string",
+									"description": "Organization ID."
+								},
+								{
+									"key": "profileID",
+									"value": "{{profileID}}",
+									"type": "string",
+									"description": "Profile to Target. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+								},
+								{
+									"key": "regID",
+									"value": "4667276",
+									"type": "string",
+									"description": "ID of the registration to modify."
+								}
+							]
+						},
+						"description": "Updates (reactivates) a registration ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/registrations.md#reactivate-a-registration)).\n\nAfter creation, `deactivated` is the only field we allow updates to. As such, it's the only field you can modify with this PUT request."
+					},
+					"response": []
+				}
+			],
+			"description": "## What are Registrations?\n\nProfiles have the details about the person. Groups have the details about the event (e.g. dates, capacity, age restrictions, etc.). Registrations simply link the two together; they say \"This person will be at this group\".\n\nRegistrations may be for staff (`type: 'provider'`) or participants (`type: 'patient'`). A staff member (Provider) registered to a group has access to the information of everyone else registered to that group, including all participants and any other providers. If a staff member is registered to a parent group (e.g. Summer Camp), then they have access to all profiles registered to that group and any of its children (e.g. Chess Week 1, Literature Week 1, etc.).\n\n## Tips and Tricks\n\nWherever a `groupID` or `profileID` route parameter is present, you may substitute the appropriate identifier if you're using your own unique IDs instead of DocNetwork's. To do this, specify the `identifier=true` query parameter and use the identifier in place of the ID.\n\n```\nGET {base_url}}/public/v2/organizations/12345/profiles/abc123/registrations?identifier=true\n\n```",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "Group (Organization) Tags",
+					"item": [
+						{
+							"name": "Get All Group Tags",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/public/v2/organizations/:orgID/tags?excludeDeactivated",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"organizations",
+										":orgID",
+										"tags"
+									],
+									"query": [
+										{
+											"key": "excludeDeactivated",
+											"value": null,
+											"description": "When present, excludes deactivated tags from the response."
+										}
+									],
+									"variable": [
+										{
+											"key": "orgID",
+											"value": "{{org_id}}",
+											"description": "Org ID"
+										}
+									]
+								},
+								"description": "Get all tags for an organization ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/tags-groups.md#retrieve-an-organizations-group-tags))."
+							},
+							"response": []
+						},
+						{
+							"name": "Create Group Tag",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n  {\n    \"value\": \"Transportation\"\n  },\n  {\n    \"value\": \"Absolutely Not\",\n    \"parentID\": 1062\n  }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/public/v2/organizations/:orgID/tags",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"organizations",
+										":orgID",
+										"tags"
+									],
+									"variable": [
+										{
+											"key": "orgID",
+											"value": "{{org_id}}",
+											"description": "Org ID"
+										}
+									]
+								},
+								"description": "Create one or more group tags for an organization ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/tags-groups.md#create-a-new-group-tag))."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Group Tag",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/public/v2/organizations/:orgID/tags/:tagID",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"organizations",
+										":orgID",
+										"tags",
+										":tagID"
+									],
+									"variable": [
+										{
+											"key": "orgID",
+											"value": "{{org_id}}",
+											"description": "Org ID"
+										},
+										{
+											"key": "tagID",
+											"value": "1062"
+										}
+									]
+								},
+								"description": "Gets an individual group tag ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/tags-groups.md#get-an-individual-group-tag))."
+							},
+							"response": []
+						},
+						{
+							"name": "Deactivate Group Tag",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/public/v2/organizations/:orgID/tags/:tagID",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"organizations",
+										":orgID",
+										"tags",
+										":tagID"
+									],
+									"variable": [
+										{
+											"key": "orgID",
+											"value": "{{org_id}}",
+											"description": "Org ID"
+										},
+										{
+											"key": "tagID",
+											"value": "1062"
+										}
+									]
+								},
+								"description": "Deactivates an individual group tag ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/tags-groups.md#get-an-individual-group-tag))."
+							},
+							"response": []
+						},
+						{
+							"name": "Update Group Tag",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"parentID\": null,\n    \"value\": \"Coolest Kid?\",\n    \"deactivated\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/public/v2/organizations/:orgID/tags/:tagID",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"organizations",
+										":orgID",
+										"tags",
+										":tagID"
+									],
+									"variable": [
+										{
+											"key": "orgID",
+											"value": "{{org_id}}",
+											"description": "Org ID"
+										},
+										{
+											"key": "tagID",
+											"value": "1062"
+										}
+									]
+								},
+								"description": "Updates an individual group tag ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/tags-groups.md#update-an-individual-group-tag))."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Profile Tags",
+					"item": [
+						{
+							"name": "Get All Profile Tags",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/tags",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"organizations",
+										":orgID",
+										"profiles",
+										":profileID",
+										"tags"
+									],
+									"query": [
+										{
+											"key": "excludeDeactivated",
+											"value": null,
+											"description": "When present, excludes deactivated tags from the response.",
+											"disabled": true
+										},
+										{
+											"key": "identifier",
+											"value": "true",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "orgID",
+											"value": "{{org_id}}"
+										},
+										{
+											"key": "profileID",
+											"value": "{{profileID}}",
+											"description": "The ID of the target profile. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+										}
+									]
+								},
+								"description": "Get all tags for an organization ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/tags-groups.md#retrieve-an-organizations-group-tags))."
+							},
+							"response": []
+						},
+						{
+							"name": "Create Profile Tag",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n  {\n    \"tagID\": 26872,\n    \"value\": \"Transportation\"\n  },\n  {\n    \"optionID\": 26871,\n    \"tagID\": 1062\n  }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/tags",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"organizations",
+										":orgID",
+										"profiles",
+										":profileID",
+										"tags"
+									],
+									"query": [
+										{
+											"key": "identifier",
+											"value": "true",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "orgID",
+											"value": "{{org_id}}"
+										},
+										{
+											"key": "profileID",
+											"value": "{{profileID}}",
+											"description": "The ID of the target profile. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+										}
+									]
+								},
+								"description": "Create one or more group profile tags ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/tags-profiles.md#create-a-new-profile-tag))."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Profile Tag",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/tags/:tagID",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"organizations",
+										":orgID",
+										"profiles",
+										":profileID",
+										"tags",
+										":tagID"
+									],
+									"query": [
+										{
+											"key": "identifier",
+											"value": "true",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "orgID",
+											"value": "{{org_id}}",
+											"description": "Org ID"
+										},
+										{
+											"key": "profileID",
+											"value": "{{profileID}}",
+											"description": "The ID of the target profile. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+										},
+										{
+											"key": "tagID",
+											"value": "982825"
+										}
+									]
+								},
+								"description": "Gets an individual profile tag ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/tags-profiles.md#get-an-individual-profile-tag))."
+							},
+							"response": []
+						},
+						{
+							"name": "Deactivate Profile Tag",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/tags/:tagID",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"organizations",
+										":orgID",
+										"profiles",
+										":profileID",
+										"tags",
+										":tagID"
+									],
+									"query": [
+										{
+											"key": "identifier",
+											"value": "true",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "orgID",
+											"value": "{{org_id}}"
+										},
+										{
+											"key": "profileID",
+											"value": "{{profileID}}",
+											"description": "The ID of the target profile. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+										},
+										{
+											"key": "tagID",
+											"value": "982825"
+										}
+									]
+								},
+								"description": "Deactivates an individual profile tag ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/tags-profiles.md#deactivate-an-individual-profile-tag))."
+							},
+							"response": []
+						},
+						{
+							"name": "Update Profile Tag",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"value\": \"Car\",\n    \"deactivated\": null\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/tags/:tagID",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"organizations",
+										":orgID",
+										"profiles",
+										":profileID",
+										"tags",
+										":tagID"
+									],
+									"query": [
+										{
+											"key": "identifier",
+											"value": "true",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "orgID",
+											"value": "{{org_id}}"
+										},
+										{
+											"key": "profileID",
+											"value": "{{profileID}}",
+											"description": "The ID of the target profile. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+										},
+										{
+											"key": "tagID",
+											"value": "982825"
+										}
+									]
+								},
+								"description": "Updates an individual profile tag ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/tags-profiles.md#update-an-individual-profile-tag))."
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "# What are Tags?\n\nTags allow you to add custom data points to profiles. They are used to label, sort, and filter profiles on data that is not typically collected through the application. Since tags are flexible, organizations can use them for many purposes, such as Cabin Numbers, Homeroom Assignments, Field Trip Activities, or almost any other custom metadata.\n\nTags are initially set up at the organization level, where they're referred to as \"Group Tags\". Applying an instance of a tag to a specific profile creates a \"Profile Tag.\"\n\nTo learn more about how to use tags, [see our documentation.](https://github.com/docnetwork/api/blob/master/v2/chapters/tags-overview.md)"
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "Get Profile Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/profiles/:profileID/reviews",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"profiles",
+								":profileID",
+								"reviews"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}"
+								},
+								{
+									"key": "profileID",
+									"value": "{{profileID}}",
+									"description": "The ID of the target profile. May be either \"profileID\" or \"profileIdentifier\" (if identifier=true)."
+								}
+							]
+						},
+						"description": "Get all reviews for a profile ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/profiles.md#retrieve-a-profiles-reviews))."
+					},
+					"response": []
+				}
+			],
+			"description": "# What are Reviews?\n\nReviews represent some manual process that an organization wants to track in our system.\n\nFor example, an organization might require that all attendees have certain immunizations before they can attend. To ensure that happens, the organization may create a Immunization Status review that the Health Staff mark as Complete when they've verified a profiles immunization records meet the organization's requirements."
+		},
+		{
+			"name": "Questions and Answers",
+			"item": [
+				{
+					"name": "Get Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/questions/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"questions",
+								""
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}"
+								}
+							]
+						},
+						"description": "Gets all questions in an organization ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/questions-answers.md#get-all-questions-for-an-organization))."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Answers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/public/v2/organizations/:orgID/questions/:questionID/answers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"organizations",
+								":orgID",
+								"questions",
+								":questionID",
+								"answers"
+							],
+							"query": [
+								{
+									"key": "identifier",
+									"value": "true",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "orgID",
+									"value": "{{org_id}}"
+								},
+								{
+									"key": "questionID",
+									"value": "123",
+									"description": "ID of the question to pull answers for"
+								}
+							]
+						},
+						"description": "Gets all answers for a particular question ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/questions-answers.md#get-answers-for-a-question))."
+					},
+					"response": []
+				}
+			],
+			"description": "# What are Questions?\n\nOne of the main purposes of our application is to collect information from participants. Organizations do that by asking Questions via their Health Forms.\n\n# What are Answers?\n\nUsers fill out Answers to each Question for each participant Profile they manage."
+		},
+		{
+			"name": "Refresh Token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{client_secret}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{client_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"description": "What we're providing the server; in this case an authorization code.",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refresh_token}}",
+							"description": "Refresh Token provided by the Create Token from Code request.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/public/v2/oauth/access_token",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"oauth",
+						"access_token"
+					]
+				},
+				"description": "Updates the access token for your application, invalidating its previous value (if it wasn't already expired). Your refresh token does not change ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/oauth.md#using-refresh-tokens))."
+			},
+			"response": []
+		},
+		{
+			"name": "Create Token from Code",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{client_secret}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{client_id}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"description": "What we're providing the server; in this case an authorization code.",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "<your_code_here>",
+							"description": "Code returned from an auth link (format is UUID V4)",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/public/v2/oauth/access_token",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"oauth",
+						"access_token"
+					]
+				},
+				"description": "Exchange your Authorization Code (1) for an Access Token and a Refresh Token. The former authenticates you to the API, and you can use the latter to get new Access Tokens after they expire. **You need a valid Access Token to make any requests to our API** ([docs](https://github.com/docnetwork/api/blob/master/v2/chapters/oauth.md#request-an-access-token-and-refresh-token))**.**\n\nAfter hitting this route, you should store the returned values in the `access_token` and `refresh_token` Postman environment variables to fully take advantage of this collection.\n\n(1) You get an Authorization Code by following the Up and Running guide we provided you with your API credentials. You can also see an _example_ of that call in the `EXAMPLE: Get Token Code` request. Unfortunately, it won't work in Postman; you need to be logged into the CampDoc/SchoolDoc/DocNetwork application as your API user in the browser to complete this step."
+			},
+			"response": []
+		},
+		{
+			"name": "EXAMPLE: Get Token Code",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/!/oauth?client_id={{client_id}}&response_type=code&scope={{scopes}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"!",
+						"oauth"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"description": "The Client ID of your application."
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}",
+							"description": "The scopes your application requires."
+						}
+					]
+				},
+				"description": "**This request will not work from Postman.** It's here to demonstrate how we format our \"Authorization Link\".\n\nMaking a GET request to this URL while signed into CampDoc as an API user creates a `code` which can be exchanged for a new Access Token for the application specified by `client_id`. To do so, log in as the API user and then navigate to the created here per the \"Up and Running\" documentation we share with you. Use the Create Token from Code request included in this collection to exchange your code for your token.\n\nThe created token's access to the your organization's data is defined by the `scope` query parameter. We recommend following the [Principle of Least Privilege](https://www.cisa.gov/uscert/bsi/articles/knowledge/principles/least-privilege) as a best practice—only request the scopes your application needs to function properly. If your application needs more access later on, you can always generate a new token. View our technical documentation for a [list of supported scopes.](https://github.com/docnetwork/api/blob/master/v2/chapters/scopes.md)"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "profileID",
+			"value": "2009180",
+			"type": "string"
+		},
+		{
+			"key": "userID",
+			"value": "637477",
+			"type": "string"
+		},
+		{
+			"key": "profileIdentifier",
+			"value": "2861920",
+			"type": "string"
+		},
+		{
+			"key": "groupIdentifier",
+			"value": "hibachi_2022",
+			"type": "string"
+		},
+		{
+			"key": "groupID",
+			"value": "266599",
+			"type": "string"
+		}
+	]
+}

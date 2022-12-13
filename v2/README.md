@@ -12,3 +12,7 @@
 1. [Registrations](./chapters/registrations.md)
 1. [Questions & Answers](./chapters/questions-answers.md)
 1. [Tags](./chapters/tags-overview.md)
+
+## Postman collection
+
+[Postman](https://www.postman.com/) helps developers interact with RESTful APIs like DocNetwork's. [Collections](https://www.postman.com/collection/) in Postman help organize and annotate API requests to browse and reuse.  We've prepared a Postman Collection to help you get started with our API.  Find the Collection [here](./collections/DN_API_v2_collection.json).  We hope it's helpful!

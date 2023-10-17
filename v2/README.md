@@ -44,7 +44,7 @@ User acknowledges and agrees that gathering data about users, including but not 
 6. #### Consequences of Non-Compliance:
    Violation of this Policy may result in the suspension or termination of API access, as well as legal actions if deemed necessary. DocNetwork reserves the right to take appropriate measures to address non-compliance.
 
-8. ####Changes to Policy:
+8. #### Changes to Policy:
    DocNetwork may update this Policy at any time, and such updates will be effective upon posting on DocNetwork's website or notification to Users.
 
 ### Conclusion: 

@@ -8,7 +8,7 @@ In order to use the API, you will need to set up an OAuth2 application. Please s
 
 ## The Base URL
 
-The application and its API is currently available at two different domains:
+The application and its API are currently available at two different domains:
 
 - https://app.campdoc.com
 - https://app.schooldoc.com

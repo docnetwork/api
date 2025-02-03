@@ -19,7 +19,7 @@ The route for the Authorization Code route is `GET /!/oauth`. All parameters mus
 | state           | Optional - A value that will be sent back to your app on redirect. Can be used to prevent CSRF attacks. |
 | scope           | Required - A space delimited list of [scopes](scopes.md) detailing the permissions your app needs |
 
-Example:
+Example with limited scope:
 ```
 https://app.campdoc.com/!/oauth?client_id=jfjf83n3nskdhsdf&response_type=code&redirect_uri=https%3A%2F%2Fexample.com%2Fcallback&scope=groups%3Aread%20profiles%3Awrite
 ```

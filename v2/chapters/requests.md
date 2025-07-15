@@ -45,7 +45,7 @@ GET /v2/organizations/12345/profiles/54321/users
 
 We use four request methods in our API: `GET`, `POST`, `PUT`, and `DELETE`.  For this API, these generally mean:
 
-- `GET` &rarr; Retreive a resource or resources
+- `GET` &rarr; Retrieve a resource or resources
 - `POST` &rarr; Create a new resource or resources
 - `PUT` &rarr; Modify a resource
 - `DELETE` &rarr; Deactivate a resource
